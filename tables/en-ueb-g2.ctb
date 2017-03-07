@@ -500,7 +500,7 @@ always enough 26-1256-126
 
 # his
 match %[^_]|%[^_~]%<*[([{] his %[^_]|[;:)}\\]]%>*%[^_~] 236
-nofor always his 236
+nofor word his 236
 
 # in
 match %[^_]!%[_1]* in !%[_1]*%[^_] 35
@@ -508,7 +508,7 @@ nofor always in 35
 
 # was
 match %[^_]|%[^_~]%<*[([{] was %[^_]|[;:)}\\]]%>*%[^_~] 356
-nofor always was 356
+nofor word was 356
 
 # were
 match %[^_]|%[^_~]%<*[([{] were %[^_]|[;:)}\\]]%>*%[^_~] 2356
