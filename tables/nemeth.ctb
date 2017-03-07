@@ -133,8 +133,10 @@ math \xf32c 126
 # Matrices
 replace \xf330
 replace \xf331
-math \xf332 4-6-12356
-math \xf333 4-6-23456
+#math \xf332 4-6-12356
+#math \xf333 4-6-23456
+replace \xf332
+replace \xf333
 replace \xf334
 replace \xf335
 # Protect against wrong use of prefixes
