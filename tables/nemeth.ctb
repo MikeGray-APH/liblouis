@@ -95,7 +95,7 @@ always \xf402\xf320 5
 math \xf321 45
 replace \xf401\xf321
 always \xf402\xf321 5
-math \xf3a0 135
+math \xf3a0 246
 # Underscript and overscript
 math \xf322 146
 always \xf401\xf322 5
