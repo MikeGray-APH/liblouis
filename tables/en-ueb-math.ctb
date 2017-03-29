@@ -49,8 +49,28 @@ math \xf32c 146-35-126
 #always \xf403\xf32a 345
 # Fractions
 math \xf500 12356
-math \xf501 23456
-math \xf503 46-34
+math \xf501 46-34
+math \xf502 46-34
+math \xf503 23456
+# Mixed Fractions
+math \xf504 0
+replace \xf504
+math \xf505 34
+math \xf506 34
+math \xf507 0
+replace \xf507
+# Complex Fractions
+math \xf508 12356
+math \xf509 46-34
+math \xf50a 46-34
+math \xf50b 23456
+# Simple Fractions
+math \xf50c 0
+replace \xf50c
+math \xf50d 34
+math \xf50e 34
+math \xf50f 0
+replace \xf50f
 # Grouping symbols
 math \xf326 126
 #math \xf327 345
