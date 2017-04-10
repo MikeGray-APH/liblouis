@@ -21,66 +21,119 @@
 # Semantic character sequences
 # Prefix characters, only definitions as they should always occur as pairs with other characters.
 
-math \xf400 0
-math \xf401 0
-math \xf402 0
-math \xf403 0
-# Begin and end equations
+#   math begin/end
 replace \xf32e
 replace \xf32f
-# Subscript and superscript
-math \xf320 26-126
-replace \xf401\xf320
-#always \xf402\xf320 345
-math \xf321 35-126
-replace \xf401\xf321
-#always \xf402\xf321 345
-# Underscript and overscript
-math \xf322 46-26-126
-replace \xf401\xf322
-#always \xf402\xf322 345
-math \xf323 46-35-126
-replace \xf401\xf323
-#always \xf402\xf323 345
-# Roots
-math \xf32a 146
-math \xf32b 346
-math \xf32c 146-35-126
-#always \xf403\xf32a 345
-# Fractions
+
+#   expressions
+replace \xf330
+replace \xf331
+replace \xf332
+
+#   fractions
 math \xf500 12356
 math \xf501 46-34
 math \xf502 46-34
 math \xf503 23456
-# Mixed Fractions
+
+#   mixed Fractions
 math \xf504 0
 replace \xf504
 math \xf505 34
 math \xf506 34
 math \xf507 0
 replace \xf507
-# Complex Fractions
+
+#   complex Fractions
 math \xf508 12356
 math \xf509 46-34
 math \xf50a 46-34
 math \xf50b 23456
-# Simple Fractions
+
+#   simple Fractions
 math \xf50c 0
 replace \xf50c
 math \xf50d 34
 math \xf50e 34
 math \xf50f 0
 replace \xf50f
+
+#   subscripts
+math \xf580 0
+replace \xf580
+math \xf581 56
+math \xf582 5
+
+#   superscripts
+math \xf583 0
+replace \xf583
+math \xf584 45
+math \xf585 5
+
+#   sub/superscripts
+math \xf586 0
+replace \xf586
+math \xf587 45-56
+math \xf588 5
+
+math \xf589 246
+
+#   underscripts
+math \xf5a0 0
+replace \xf5a0
+math \xf5a1 0
+replace \xf5a1
+math \xf5a2 0
+replace \xf5a2
+
+#   overscripts
+math \xf5a3 0
+replace \xf5a4
+math \xf5a4 0
+replace \xf5a4
+math \xf5a5 0
+replace \xf5a5
+
+#   under/overscripts
+math \xf5a6 0
+replace \xf5a6
+math \xf5a7 0
+replace \xf5a7
+
+#   root
+math \xf5b0 126
+math \xf5b1 345
+math \xf5b2 12456
+
+#   square root
+math \xf5b3 345
+math \xf5b4 12456
+
+#   tables
+replace \xf600
+replace \xf601
+replace \xf602
+replace \xf603
+replace \xf604
+replace \xf605
+
+math \xf610 6-12356
+math \xf611 6-23456
+math \xf612 6-4-12356
+math \xf613 6-4-23456
+math \xf614 6-46-12356
+math \xf615 6-46-23456
+math \xf616 6-46-46-12356
+math \xf617 6-46-46-23456
+math \xf618 6-1256
+
+
 # Grouping symbols
-math \xf326 126
+#math \xf326 126
 #math \xf327 345
 
 # Protect against incorrect use of escapes or where escape not really needed
 # eg. brackets from mfenced
-replace \xf400
-replace \xf401
-replace \xf402
-replace \xf403
 
 # Corrections
 # Remove grouping from around superscripts and subscripts

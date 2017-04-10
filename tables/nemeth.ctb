@@ -79,72 +79,105 @@ context ["\X25A0"]$d @1246-456-256-5
 always \x00b0 45-46-16
 always \x00B1 346-36
 
-# semantic character pairs
-math \xf400 0
-math \xf401 0
-math \xf402 0
-math \xf403 0
-# Begin and end equation
+#   math begin/end
 # replace \xf32e
 # replace \xf32f
 grouping math \xf32e\xf32f 12e,15e
-# Sub and superscript
-math \xf320 56
-replace \xf401\xf320
-always \xf402\xf320 5
-math \xf321 45
-replace \xf401\xf321
-always \xf402\xf321 5
-math \xf3a0 246
-# Underscript and overscript
-math \xf322 146
-always \xf401\xf322 5
-always \xf402\xf322 12456
-math \xf323 126
-always \xf401\xf323 5
-always \xf402\xf323 12456
-# Fenced characters
-always \xf401( 12356
-always \xf402) 23456
-always \xf401{ 246
-always \xf402} 12456
-# Expression groups
-replace \xf326
-replace \xf327
-# Fractions
+
+#   expressions
+replace \xf330
+replace \xf331
+replace \xf332
+
+#   fractions
 math \xf500 1456
 math \xf501 34
 math \xf502 456-34
 math \xf503 3456
-# Mixed Fractions
+
+#   mixed Fractions
 math \xf504 456-1456
 math \xf505 34
 math \xf506 456-34
 math \xf507 456-3456
-# Complex Fractions
+
+#   complex Fractions
 math \xf508 6-1456
 math \xf509 6-34
 math \xf50a 6-456-34
 math \xf50b 6-3456
-# Simple Fractions
+
+#   simple Fractions
 math \xf50c 1456
 math \xf50d 34
 math \xf50e 456-34
 math \xf50f 3456
-# Roots
-math \xf32a 345
-always \xf403\xf32a 345
-math \xf32b 12456
-math \xf32c 126
-# Matrices
-replace \xf330
-replace \xf331
-#math \xf332 4-6-12356
-#math \xf333 4-6-23456
-replace \xf332
-replace \xf333
-replace \xf334
-replace \xf335
+
+#   subscripts
+math \xf580 0
+replace \xf580
+math \xf581 56
+math \xf582 5
+
+#   superscripts
+math \xf583 0
+replace \xf583
+math \xf584 45
+math \xf585 5
+
+#   sub/superscripts
+math \xf586 0
+replace \xf586
+math \xf587 45-56
+math \xf588 5
+
+math \xf589 246
+
+#   underscripts
+math \xf5a0 5
+math \xf5a1 146
+math \xf5a2 12456
+
+#   overscripts
+math \xf5a3 5
+math \xf5a4 126
+math \xf5a5 12456
+
+#   under/overscripts
+math \xf5a6 0
+replace \xf5a6
+math \xf5a7 0
+replace \xf5a7
+
+#   root
+math \xf5b0 126
+math \xf5b1 345
+math \xf5b2 12456
+
+#   square root
+math \xf5b3 345
+math \xf5b4 12456
+
+#   tables
+replace \xf600
+replace \xf601
+replace \xf602
+replace \xf603
+replace \xf604
+replace \xf605
+
+math \xf610 6-12356
+math \xf611 6-23456
+math \xf612 4-6-12356
+math \xf613 4-6-23456
+math \xf614 46-6-12356
+math \xf615 46-6-23456
+math \xf616 46-46-6-12356
+math \xf617 46-46-6-23456
+math \xf618 6-1256
+
+
+
 # Protect against wrong use of prefixes
 replace \xf400
 replace \xf401
