@@ -378,6 +378,7 @@ sign \x2033 2356-2356 ″ double prime (second derivative)
 sign \x2200 45-1 ∀ for all
 sign \x2202 4-145 ∂ partial derivative
 sign \x2203 45-26 ∃ there exists
+sign \x2204 45-26-4-156 ∄ there does not exist
 sign \x2205 4-245 ∅ empty set
 sign \x2207 45-145 ∇ nabla
 sign \x2208 45-15 ∈ element of
@@ -405,6 +406,7 @@ sign \x2245 5-456-35 ≅ approximately equal to
 sign \x2248 45-35 ≈ almost equal to
 sign \x224f 45-5-2356 ≏ difference between
 sign \x2251 46-5-2356 ≑ geometrically equal
+sign \x2260 5-2356-4-156 ≠ not equal to
 sign \x2261 456-123456 ≡ identical (equivalent) to
 sign \x2264 456-4-126 ≤ less than or equal to
 sign \x2265 456-4-345 ≥ greater than or equal to
