@@ -3486,6 +3486,15 @@ beginCount(
 	return 0;
 }
 
+/*   no ending indicators after no_translation   */
+static int
+isPrvNoTranslate(const int at)
+{
+	if(at == 0)
+		return 0;
+	return typebuf[at - 1] & no_translate;
+}
+
 static void
 insertEmphasesAt(const int at)
 {
@@ -3502,6 +3511,7 @@ insertEmphasesAt(const int at)
 				&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
 
 		if(emphasisBuffer[at] & CAPS_EMPHASIS)
+		if(!isPrvNoTranslate(at))
 		{
 			insertEmphasisEnd(
 				emphasisBuffer, at, capsRule, CAPS_END, CAPS_WORD);
@@ -3520,6 +3530,7 @@ insertEmphasesAt(const int at)
 	//TODO:  ordering with partial word using bit_word and bit_end
 
 	if(emphasisBuffer[at] & CAPS_EMPHASIS)
+	if(!isPrvNoTranslate(at))
 		insertEmphasisEnd(emphasisBuffer, at, capsRule, CAPS_END, CAPS_WORD);
 
 	/*   end bits   */
@@ -3543,6 +3554,8 @@ insertEmphasesAt(const int at)
 		if(min < 0)
 			break;
 		type_counts[min] = 0;
+		if(isPrvNoTranslate(at))
+			continue;
 		if (min < 5)
 			insertEmphasisEnd(
 				emphasisBuffer, at, emph1Rule + min,
