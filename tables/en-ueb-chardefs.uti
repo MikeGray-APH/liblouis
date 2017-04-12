@@ -297,9 +297,12 @@ punctuation \x00bb 456-356 »
 punctuation \x00bf 45-46-236 ¿
 uppercase \x00c6 1-6-45-235-15 Æ
 lowercase \x00e6 1-45-235-15 æ
-
+uppercase \x0132 24-6-45-235-245 Ĳ
+lowercase \x0133 24-45-235-245 ĳ
 uppercase \x014a 6-45-1345 Ŋ
 lowercase \x014b 45-1345 ŋ
+uppercase \x0152 14-6-45-235-15 Œ
+lowercase \x0153 14-45-235-15 œ
 uppercase \x018f 6-456-26 Ə
 lowercase \x0259 456-26 ə
 
@@ -452,4 +455,12 @@ endword \x2019s 3-234
 endword s\x2019 234-3
 endword \x2019t 3-2345
 
+#\xa7f9 ꟹ
+
+lowercase \xfb00 124-45-235-124 ﬀ
+lowercase \xfb01 124-45-235-24 ﬁ
+#\xfb02 ﬃ
+#\xfb03 ﬄ
+lowercase \xfb04 124-45-235-2345 ﬅ
+lowercase \xfb05 234-45-235-2345 ﬆ
 
