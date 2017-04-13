@@ -3671,11 +3671,21 @@ checkNumericMode()
 	{
 		if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
 		{
-			numericMode = 0;
-			if(brailleIndicatorDefined(table->noContractSign))
-			if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
-					for_updatePositions(
-						&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+			/*   deal with numeric space   */
+			if
+			(   !table->usesNumericMode
+			 || (   table->usesNumericMode
+			     && src < srcmax
+			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
+			    )
+			)
+			{
+				numericMode = 0;
+				if(brailleIndicatorDefined(table->noContractSign))
+				if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
+						for_updatePositions(
+							&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+			}
 		}
 	}
 }
