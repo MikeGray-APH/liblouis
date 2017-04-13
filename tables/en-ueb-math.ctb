@@ -36,21 +36,22 @@ math \xf501 46-34
 math \xf502 46-34
 math \xf503 23456
 
-#   mixed Fractions
+#   mixed fractions
 math \xf504 0
 replace \xf504
 math \xf505 34
 math \xf506 34
 math \xf507 0
 replace \xf507
+replace \x2064   # invisible add
 
-#   complex Fractions
+#   complex fractions
 math \xf508 12356
 math \xf509 46-34
 math \xf50a 46-34
 math \xf50b 23456
 
-#   simple Fractions
+#   simple fractions
 math \xf50c 0
 replace \xf50c
 math \xf50d 34
