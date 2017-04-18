@@ -300,8 +300,8 @@ lowercase \x00e6 1-45-235-15 æ
 uppercase \x0132 24-6-45-235-245 Ĳ
 lowercase \x0133 24-45-235-245 ĳ
 uplow \x014a\x014b 45-1345 Ŋŋ
-uppercase \x0152 14-6-45-235-15 Œ
-lowercase \x0153 14-45-235-15 œ
+uppercase \x0152 135-6-45-235-15 Œ
+lowercase \x0153 135-45-235-15 œ
 uplow \x018f\x0259 456-26 Əə
 #\x0259 ə  see \x018f
 sign \x02d8 4-346 ˘ uncombining breve
