@@ -78,9 +78,17 @@ litdigit 9 24
 
 display ! 2346
 punctuation ! 235
+nofor postpunc ! 235
 
 display " 5
 punctuation " 6-2356
+# The "?" symbol is mostly handled below,
+# but the pattern needs to be defined before prepunc and postpunc can be used.
+display ? 1456
+nofor punctuation ? 236
+nofor punctuation " 356
+nofor prepunc " 236
+nofor postpunc " 356
 match %[^_~]%<* " %[_.$]*%[a#] 236
 match %[a#]%[_.$]* " %>*%[^_~] 356
 
@@ -113,10 +121,11 @@ math / 456-34
 
 display : 156
 punctuation : 25
+postpunc : 25
 #TODO:  this is unnecessarily necessary
 display ; 56
 punctuation ; 23
-punctuation ; 56
+noback punctuation ; 56
 display < 126
 math < 4-126
 display = 123456
@@ -124,7 +133,6 @@ math = 5-2356
 display > 345
 punctuation > 4-345
 #   requires grade one indicator when by itself
-display ? 1456
 punctuation ? 56-236
 postpunc ? 236
 display @ 47
@@ -140,7 +148,7 @@ display ^ 457
 sign ^ 4-26
 display _ 456
 sign _ 46-36
-punctuation ` 4
+noback punctuation ` 4
 
 display } 12456
 punctuation } 456-345
@@ -206,35 +214,35 @@ uplow \x016c\x016d 4-346-136 Ŭŭ
 uplow \x0178\x00ff 45-25-13456 Ÿÿ
 
 sign \x0300 45-16 ̀̀  grave accent
-correct [$l]"̀" "̀"*
+noback correct [$l]"̀" "̀"*
 
 sign \x0301 45-34 ́  acute accent
-correct [$l]"́" "́"*
+noback correct [$l]"́" "́"*
 
 sign \x0302 45-146 ̂  circumflex
-correct [$l]"̂" "̂"*
+noback correct [$l]"̂" "̂"*
 
 sign \x0303 45-12456 ̃  tilde
-correct [$l]"̃" "̃"*
-pass2 @45-12456-6 @6-45-12456  move after capital sign
+noback correct [$l]"̃" "̃"*
+noback pass2 @45-12456-6 @6-45-12456  move after capital sign
 
 sign \x0304 45-4-36 ̄  macron
-correct [$l]"̄" "̄"*
+noback correct [$l]"̄" "̄"*
 
 sign \x0306 4-346 ̆  breve
-correct [$l]"̆" "̆"*
+noback correct [$l]"̆" "̆"*
 
 sign \x0308 45-25 ̈  diaeresis/umlat
-correct [$l]"̈" "̈"*
+noback correct [$l]"̈" "̈"*
 
 sign \x030a 45-1246 ̊  ring/circle
-correct [$l]"̊" "̊"*
+noback correct [$l]"̊" "̊"*
 
 sign \x030c 45-346 ̌  caron
-correct [$l]"̌" "̌"*
+noback correct [$l]"̌" "̌"*
 
 sign \x0327 45-12346 ̧  cedilla
-correct [$l]"̧" "̧"*
+noback correct [$l]"̧" "̧"*
 
 
 #   Unicode Greek
@@ -371,7 +379,21 @@ math \x00f7 5-34 ÷
 
 #math \x2070 35-3456-245 ⁰
 
+math \x2150 3456-1-34-1245 ⅐
+math \x2151 3456-1-34-24 ⅑
+math \x2152 3456-1-34-1-245 ⅒
+math \x2153 3456-1-34-14 ⅓
+math \x2154 3456-12-34-14 ⅔
+math \x2155 3456-1-34-15 ⅕
+math \x2156 3456-12-34-15 ⅖
+math \x2157 3456-14-34-15 ⅗
+math \x2158 3456-145-34-15 ⅘
+math \x2159 3456-1-34-124 ⅙
+math \x215a 3456-15-34-124 ⅚
+math \x215b 3456-1-34-125 ⅛
 math \x215c 3456-14-34-125 ⅜
+math \x215d 3456-15-34-125 ⅝
+math \x215e 3456-1245-34-125 ⅞
 
 sign \x2032 2356 ′ prime (derivative)
 sign \x2033 2356-2356 ″ double prime (second derivative)
@@ -408,7 +430,7 @@ sign \x2245 5-456-35 ≅ approximately equal to
 sign \x2248 45-35 ≈ almost equal to
 sign \x224f 45-5-2356 ≏ difference between
 sign \x2251 46-5-2356 ≑ geometrically equal
-sign \x2260 5-2356-4-156 ≠ not equal to
+sign \x2260 5-2356-4-156 ≠ not equal
 sign \x2261 456-123456 ≡ identical (equivalent) to
 sign \x2264 456-4-126 ≤ less than or equal to
 sign \x2265 456-4-345 ≥ greater than or equal to
@@ -443,6 +465,7 @@ math \x3009 4-345 〉
 punctuation \x0093 236
 punctuation \x0094 356
 punctuation \x0096 36
+noback sign \X25CF 5-35	# 9679 black circle
 
 #   Unicode prefers \x2019 for apostrophe instead of \x27
 endword \x2019d 3-145

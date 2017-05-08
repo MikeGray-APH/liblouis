@@ -86,6 +86,7 @@ table_files = \
 	digits8Dots.uti \
 	dra.ctb \
 	dra.tbl \
+	el.ctb \
 	el.tbl \
 	en_AS.tbl \
 	en_CA.ctb \
@@ -104,6 +105,8 @@ table_files = \
 	en-us-brf.dis \
 	en-us-comp6.ctb \
 	en-us-comp8.ctb \
+	en_US-comp8-ext.tbl \
+	en-us-comp8-ext.utb \
 	en-us-compbrl.ctb \
 	en-us-g1.ctb \
 	en-us-g2.ctb \
@@ -223,6 +226,7 @@ table_files = \
 	ks-in-g1.utb \
 	latinLetterDef6Dots.uti \
 	latinLetterDef8Dots.uti \
+	litdigits6DotsPlusDot6.uti \
 	litdigits6Dots.uti \
 	loweredDigits6Dots.uti \
 	loweredDigits8Dots.uti \
@@ -258,7 +262,7 @@ table_files = \
 	nl-BE-g0.utb \
 	nl_BE.tbl \
 	nl-chardefs.uti \
-	nl-g0.utb \
+	nl-g0.uti \
 	nl-NL-g0.utb \
 	nl_NL.tbl \
 	nl.tbl \
@@ -357,6 +361,8 @@ table_files = \
 	wiskunde-chardefs.cti \
 	wiskunde.ctb \
 	wiskunde-translation.cti \
+	zh-chn.ctb \
+	zh_CHN.tbl \
 	zh-hk.ctb \
 	zh_HK.tbl \
 	zh-tw.ctb \

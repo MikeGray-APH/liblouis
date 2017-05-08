@@ -74,6 +74,7 @@ extern "C" {
 /*HASHNUM must be prime */
 #define HASHNUM 1123
 
+#define MAXPASS 4
 #define MAXSTRING 2048
 
 #define MAX_EMPH_CLASSES \
@@ -254,6 +255,7 @@ typedef enum { /*Op codes */
                CTO_CompBegCaps,
                CTO_CompEndCaps,
                CTO_EndComp,
+               CTO_NoContractSign,
                CTO_MultInd,
                CTO_CompDots,
                CTO_Comp6,
@@ -292,7 +294,6 @@ typedef enum { /*Op codes */
                CTO_ExactDots,
                CTO_NoCross,
                CTO_Syllable,
-               CTO_NoContractSign,
                CTO_NoCont,
                CTO_CompBrl,
                CTO_Literal,
@@ -519,7 +520,8 @@ typedef struct { /*translation table */
   TranslationTableOffset dotsToChar[HASHNUM];
   TranslationTableOffset compdotsPattern[256];
   TranslationTableOffset swapDefinitions[NUMSWAPS];
-  TranslationTableOffset attribOrSwapRules[5];
+  TranslationTableOffset forPassRules[MAXPASS + 1];
+  TranslationTableOffset backPassRules[MAXPASS + 1];
   TranslationTableOffset forRules[HASHNUM];  /** chains of forward rules */
   TranslationTableOffset backRules[HASHNUM]; /** Chains of backward rules */
   TranslationTableOffset ruleArea[1];        /** Space for storing all rules and values */
@@ -599,11 +601,6 @@ widechar getCharFromDots(widechar d);
  * to allocate memory for internal buffers.
  */
 void *liblouis_allocMem(AllocBuf buffer, int srcmax, int destmax);
-
-/**
- * Return the emphasis classes declared in tableList.
- */
-char **getEmphClasses(const char *tableList);
 
 /**
  * Hash function for character strings
@@ -703,6 +700,14 @@ int backTranslateWithTracing(const char *tableList, const widechar *inbuf,
                              const TranslationTableRule **rules, int *rulesLen);
 
 char *getLastTableList();
+
+extern void resetPassVariables (void);
+
+extern int handlePassVariableTest (const widechar *instructions,
+				    int *IC, int *itsTrue);
+
+extern int handlePassVariableAction (const widechar *instructions,
+				      int *IC);
 
 int pattern_check(const widechar *input, const int input_start, const int
 		  input_minmax, const int input_dir, const widechar *expr_data,

@@ -21,6 +21,7 @@ backtranslate_with_letsign_SOURCES = backtranslate_with_letsign.c
 capitalization_SOURCES = capitalization.c
 capitalized_word_SOURCES = default_table.h capitalized_word.c
 checkTable_SOURCES = checkTable.c
+compbrlAtCursor_SOURCES = compbrlAtCursor.c
 emphclass_SOURCES = emphclass.c
 en_gb_g1_italics_SOURCES = en_gb_g1_italics.c
 findTable_SOURCES = findTable.c
@@ -52,6 +53,7 @@ check_metadata_SOURCES = check_metadata.c
 # Note that this is not currently included in check_programs below
 # otherwise make check would never complete.
 infiniteTranslationLoop_SOURCES = infiniteTranslationLoop.c
+noinst_PROGRAMS = infiniteTranslationLoop
 
 program_TESTS =					\
 	backtranslate				\
@@ -63,6 +65,7 @@ program_TESTS =					\
 	capitalized_word			\
 	checkTable				\
 	check_metadata				\
+	compbrlAtCursor				\
 	emphclass				\
 	en_gb_g1_italics			\
 	findTable				\
@@ -115,7 +118,8 @@ XFAIL_TESTS =					\
 	present_progressive			\
 	lastworditalafter			\
 	en_gb_g1_italics			\
-	squash_space
+	squash_space				\
+	compbrlAtCursor
 
 # en-ueb-symbols_harness.yaml defines the desired behaviour.
 # Apparently the tables aren't quite there yet.
@@ -131,16 +135,28 @@ XFAIL_TESTS +=					\
 dist_yaml_TESTS =				\
 	yaml/ar-ar-g1_harness.yaml		\
 	yaml/ar-fa_harness.yaml			\
+	yaml/begcaps_endcaps.yaml		\
+	yaml/capsnocont.yaml			\
 	yaml/chr-us-g1_harness.yaml		\
+	yaml/da-dk-g08-back.yaml		\
+	yaml/da-dk-g08.yaml			\
 	yaml/da-dk-g16-dictionary_harness.yaml	\
+	yaml/da-dk-g18-back.yaml		\
 	yaml/da-dk-g18-dictionary_harness.yaml	\
+	yaml/da-dk-g18.yaml			\
 	yaml/da-dk-g26-dictionary_harness.yaml	\
+	yaml/da-dk-g28-back.yaml		\
 	yaml/da-dk-g28-dictionary_harness.yaml	\
+	yaml/da-dk-g28l-back.yaml		\
+	yaml/da-dk-g28l.yaml			\
+	yaml/da-dk-g28.yaml			\
+	yaml/el-backward.yaml			\
+	yaml/el-forward.yaml			\
 	yaml/emphasis-full.yaml			\
 	yaml/emphasis-no-context.yaml		\
+	yaml/en-gb-g1_harness.yaml		\
 	yaml/en-GB-g2_backward.yaml		\
 	yaml/en-GB-g2_harness.yaml		\
-	yaml/en-gb-g1_harness.yaml		\
 	yaml/en-ueb-02-stand_alone.yaml		\
 	yaml/en-ueb-03-symbols.yaml		\
 	yaml/en-ueb-05-grade_1_mode.yaml	\
@@ -149,10 +165,15 @@ dist_yaml_TESTS =				\
 	yaml/en-ueb-09-typeforms.yaml		\
 	yaml/en-ueb-10-07-contractions.yaml	\
 	yaml/en-ueb-10-13-contractions.yaml	\
+	yaml/en-ueb-g1_backward.yaml		\
 	yaml/en-ueb-g1_harness.yaml		\
+	yaml/en-ueb-g2_backward.yaml		\
+	yaml/en-ueb-g2_backward_no_dis.yaml	\
 	yaml/en-ueb-g2-dictionary_harness.yaml	\
 	yaml/en-ueb-math.yaml			\
 	yaml/en-ueb-symbols_harness.yaml	\
+	yaml/en-us-comp8-ext-back_harness.yaml	\
+	yaml/en-us-comp8-ext-for_harness.yaml	\
 	yaml/en-us-g2-dictionary_harness.yaml	\
 	yaml/en-us-g2-end-emphasis_harness.yaml	\
 	yaml/eo-g1_harness.yaml			\
@@ -163,6 +184,8 @@ dist_yaml_TESTS =				\
 	yaml/fi_harness.yaml			\
 	yaml/foo.yaml				\
 	yaml/fr-bfu-g2_harness.yaml		\
+	yaml/fr-fr-g1_backward.yaml		\
+	yaml/fr-fr-g1_harness.yaml		\
 	yaml/ga-g1_harness.yaml			\
 	yaml/ga-g2_harness.yaml			\
 	yaml/hr-8dots_harness.yaml		\
@@ -176,17 +199,26 @@ dist_yaml_TESTS =				\
 	yaml/letterDefTest_harness.yaml		\
 	yaml/lt_harness.yaml			\
 	yaml/mn-MN_harness.yaml			\
-	yaml/nl-BE-g0_harness.yaml		\
+	yaml/multipass-backward.yaml		\
+	yaml/multipass-forward.yaml		\
+	yaml/multipass.yaml			\
+	yaml/new_emph.yaml			\
+	yaml/nl-g0_harness.yaml			\
 	yaml/nl-NL-g0_harness.yaml		\
 	yaml/no_8dot_harness.yaml		\
+	yaml/nocross_harness.yaml		\
 	yaml/no_g1_harness.yaml			\
 	yaml/no_g2_harness.yaml			\
 	yaml/no_harness.yaml			\
-	yaml/nocross_harness.yaml		\
 	yaml/noletsignafter.yaml		\
 	yaml/pl-pl-comp8_harness.yaml		\
 	yaml/sr-g1_harness.yaml			\
-	yaml/ta-ta-g1_harness.yaml
+	yaml/ta-ta-g1_harness.yaml		\
+	yaml/vi-g1_backward.yaml		\
+	yaml/vi-g1_harness.yaml			\
+	yaml/zh-chn.yaml				\
+	yaml/issue-35.yaml				\
+	yaml/issue-238.yaml
 
 TEST_EXTENSIONS = .yaml
 YAML_LOG_COMPILER =  $(top_builddir)/tools/lou_checkyaml
