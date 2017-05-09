@@ -339,6 +339,7 @@ sign \x2020 4-6-1456 † dagger
 sign \x2021 4-6-12456 ‡ double dagger
 sign \x2022 456-256 • bullet
 punctuation \x2026 256-256-256 … ellipse
+space \x202f 0 narrow no-break space
 sign \x20a3 4-124 ₣ franc
 sign \x20a6 4-1345 ₦ naira
 sign \x20ac 4-15 € euro
