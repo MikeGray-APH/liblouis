@@ -341,6 +341,10 @@ uppercase \x00c6 1-6-45-235-15 Æ
 lowercase \x00e6 1-45-235-15 æ
 uppercase \x0152 135-6-45-235-15 Œ
 lowercase \x0153 135-45-235-15 œ
+uppercase \x01e2 1-36-126-1-6-45-235-15-345 Ǣ
+lowercase \x01e3 1-36-126-1-45-235-15-345 ǣ
+uppercase \x01e2 45-34-126-1-6-45-235-15-345 Ǽ
+lowercase \x01e3 45-34-126-1-45-235-15-345 ǽ
 uppercase \x04d4 1-6-45-235-15 Ӕ cyrillic
 lowercase \x04d5 1-45-235-15 ӕ cyrillic
 uppercase \x0132 24-6-45-235-245 Ĳ
@@ -354,7 +358,7 @@ lowercase \xfb05 234-45-235-2345 ﬆ
 #\xa7f9 ꟹ
 #\xfb02 ﬃ
 #\xfb03 ﬄ
-#   ᾱ   ǟ   ḫ   ⨣   ẘẙ  Ɵ   ẗ   ǰ   Ⱥ   ɟⱦꝃ Ѣѣ
+#   ᾱ   ǟ   ḫ   ⨣   ẘẙ  Ɵ   ẗ   ǰ   Ⱥ   ɟⱦꝃ Ѣѣ  ǘ
 
 
 #   Unicode Greek
