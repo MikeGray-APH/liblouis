@@ -160,62 +160,151 @@ display ~ 45
 math ~ 4-35
 
 
-#   Unicode Accented Letters
+#   Unicode Modified Letters
 
-uplow \x00c0\x00e0 45-16-1 Àà
-uplow \x00c1\x00e1 45-34-1 Áá
-uplow \x00c2\x00e2 45-146-1 Ââ
-uplow \x00c3\x00e3 45-12456-1 Ãã
-uplow \x00c4\x00e4 45-25-1 Ää
-uplow \x00c5\x00e5 45-1246-1 Åå
-uplow \x00c7\x00e7 45-12346-14 Çç
-uplow \x00c8\x00e8 45-16-15 Èè
-uplow \x00c9\x00e9 45-34-15 Éé
-uplow \x00ca\x00ea 45-146-15 Êê
-uplow \x00cb\x00eb 45-25-15 Ëë
-uplow \x00cc\x00ec 45-16-24 Ìì
-uplow \x00cd\x00ed 45-34-24 Íí
-uplow \x00ce\x00ee 45-146-24  Îî
-uplow \x00cf\x00ef 45-25-24 Ïï
-uplow \x00d0\x00f0 3456-1246 Ðð
-uplow \x00d1\x00f1 45-12456-1345 Ññ
-uplow \x00d2\x00f2 45-16-135 Òò
-uplow \x00d3\x00f3 45-34-135 Óó
-uplow \x00d4\x00f4 45-146-135 Ôô
-uplow \x00d5\x00f5 45-12456-135 Õõ
-uplow \x00d6\x00f6 45-25-135 Öö
-uplow \x00d8\x00f8 4-16-135 Øø
-uplow \x00d9\x00f9 45-16-136 Ùù
-uplow \x00da\x00fa 45-34-136 Úú
-uplow \x00db\x00fb 45-146-136 Ûû
-uplow \x00dc\x00fc 45-25-136 Üü
-uplow \x00de\x00fe 3456-2346 Þþ
-uplow \x00dd\x00fd 45-34-13456 Ýý
+uplow \x00d8\x00f8 4-16-135 Øø   stroke
+uplow \x0141\x0142 4-16-123 Łł   stroke
+uplow \x023a\x2c65 4-16-1 Ⱥⱥ   stroke
+uplow \x023b\x023c 4-16-14 Ȼȼ   stroke
+uplow \x023e\x2c66 4-16-2345 Ⱦⱦ   diagonal stroke
+uplow \x0246\x0247 4-16-15 Ɇɇ   stroke
+uplow \xa742\xa743 4-16-13 Ꝃꝃ   diagonal stroke
+uplow \xa758\xa759 4-16-12345 Ꝙꝙ   diagonal stroke
+uplow \xa75e\xa75f 4-16-1236 Ꝟꝟ   diagonal stroke
 
-uplow \x0100\x0101 4-36-1 Āā
+uplow \x0110\x0111 4-25-145 Đđ   stroke
+uplow \x0126\x0127 4-25-125 Ħħ   stroke
+uplow \x0166\x0167 4-25-2345 Ŧŧ   stroke
+uplow \x0197\x0268 4-25-24 Ɨɨ   stroke
+uplow \x01b5\x01b6 4-25-1356 Ƶƶ   stroke
+uplow \x01e4\x01e5 4-25-1245 Ǥǥ   stroke
+uplow \x0243\x0180 4-25-12 Ƀƀ   stroke
+uplow \x0248\x0249 4-25-245 Ɉɉ   stroke
+uplow \x024c\x024d 4-25-15 Ɍɍ   stroke
+uplow \x024e\x024f 4-25-13456 Ɏɏ   stroke
+uplow \x04b0\x04b1 4-25-13456 Ұұ   stroke   cyrillic straight u
+uplow \x2c63\x1d7d 4-25-1234 Ᵽᵽ   stroke
+uplow \xa740\xa741 4-25-13 Ꝁꝁ   stroke
+uplow \xa750\xa751 4-25-1234 Ꝑꝑ   stroke descender
+uplow \xa756\xa757 4-25-12345 Ꝗꝗ   stroke descender
+uplow \xa798\xa798 4-25-124 Ꞙꞙ   stroke
+
 uplow \x0102\x0103 4-346-1 Ăă
-uplow \x0106\x0107 45-34-14 Ćć
-uplow \x0108\x0109 45-146-14 Ĉĉ
-uplow \x010c\x010d 45-346-14 Čč
-uplow \x0112\x0113 4-36-15 Ēē
 uplow \x0114\x0115 4-346-15 Ĕĕ
-uplow \x011a\x011b 45-346-15 Ěě
-uplow \x011c\x011d 45-146-1245 Ĝĝ
 uplow \x011e\x011f 4-346-1245 Ğğ
-uplow \x0124\x0125 45-146-125 Ĥĥ
-uplow \x012a\x012b 4-36-24 Īī
 uplow \x012c\x012d 4-346-24 Ĭĭ
-uplow \x014c\x014d 4-36-135 Ōō
 uplow \x014e\x014f 4-346-135 Ŏŏ
-uplow \x0166\x0167 4-25-2345 Ŧŧ
-uplow \x016a\x016b 4-36-136 Ūū
 uplow \x016c\x016d 4-346-136 Ŭŭ
 
+uplow \x0100\x0101 4-36-1 Āā
+uplow \x0112\x0113 4-36-15 Ēē
+uplow \x012a\x012b 4-36-24 Īī
+uplow \x014c\x014d 4-36-135 Ōō
+uplow \x016a\x016b 4-36-136 Ūū
+uplow \x0232\x0233 4-36-13456 Ȳȳ
+uplow \x04ee\x04ef 4-36-13456 Ӯӯ   cyrillic u
+uplow \x1e20\x1e21 4-36-1245 Ḡḡ
+
+
+uplow \x00c7\x00e7 45-12346-14 Çç
+uplow \x0122\x0123 45-12346-1245 Ģģ
+uplow \x0136\x0137 45-12346-13 Ķķ
+uplow \x013b\x013c 45-12346-123 Ļļ
+uplow \x0145\x0146 45-12346-1345 Ņņ
+uplow \x0156\x0157 45-12346-1235 Ŗŗ
+uplow \x015e\x015f 45-12346-234 Şş
+uplow \x0162\x0163 45-12346-2345 Ţţ
+uplow \x0228\x0229 45-12346-15 Ȩȩ
+uplow \x04aa\x04ab 45-12346-14 Ҫҫ
+
+uplow \x00c0\x00e0 45-16-1 Àà
+uplow \x00c8\x00e8 45-16-15 Èè
+uplow \x00cc\x00ec 45-16-24 Ìì
+uplow \x00d2\x00f2 45-16-135 Òò
+uplow \x00d9\x00f9 45-16-136 Ùù
+uplow \x01f8\x01f9 45-16-1345 Ǹǹ
+uplow \x0400\x0450 45-16-15 Ѐѐ   cyrillic ie
+
+uplow \x00c2\x00e2 45-146-1 Ââ
+uplow \x00ca\x00ea 45-146-15 Êê
+uplow \x00cd\x00ed 45-146-24 Íí
+uplow \x00ce\x00ee 45-146-24 Îî
+uplow \x00d3\x00f3 45-146-135 Óó
+uplow \x00d4\x00f4 45-146-135 Ôô
+uplow \x00da\x00fa 45-146-136 Úú
+uplow \x00db\x00fb 45-146-136 Ûû
+uplow \x0108\x0109 45-146-14 Ĉĉ
+uplow \x011c\x011d 45-146-1245 Ĝĝ
+uplow \x0124\x0125 45-146-125 Ĥĥ
+uplow \x0134\x0135 45-146-245 Ĵĵ
+uplow \x015c\x015d 45-146-234 Ŝŝ
+uplow \x0174\x0175 45-146-2456 Ŵŵ
+uplow \x0176\x0177 45-146-13456 Ŷŷ
+
+uplow \x00c5\x00e5 45-1246-1 Åå
+uplow \x016e\x016f 45-1246-136 Ůů
+
+uplow \x00c3\x00e3 45-12456-1 Ãã
+uplow \x00d1\x00f1 45-12456-1345 Ññ
+uplow \x00d5\x00f5 45-12456-135 Õõ
+uplow \x0168\x0169 45-12456-136 Ũũ
+uplow \x1e7c\x1e7d 45-12456-1236 Ṽṽ
+uplow \x1ebc\x1ebd 45-12456-15 Ẽẽ
+uplow \x1ef8\x1ef9 45-12456-13456 Ỹỹ
+
+uplow \x00c4\x00e4 45-25-1 Ää
+uplow \x00cb\x00eb 45-25-15 Ëë
+uplow \x00cf\x00ef 45-25-24 Ïï
+uplow \x00d6\x00f6 45-25-135 Öö
+uplow \x00dc\x00fc 45-25-136 Üü
 uplow \x0178\x00ff 45-25-13456 Ÿÿ
+uplow \x0401\x0451 45-25-15 Ёё   cyrillic io
+uplow \x0407\x0457 45-25-24 Її   cyrillic yi
+uplow \x04d2\x04d3 45-25-1 Ӓӓ   cyrillic a
+uplow \x04f0\x04f1 45-25-13456 Ӱӱ   cyrillic u
+uplow \x1e26\x1e27 45-25-125 Ḧḧ
+uplow \x1e84\x1e85 45-25-2456 Ẅẅ
+uplow \x1e8c\x1e8d 45-25-1346 Ẍẍ
+
+uplow \x00c1\x00e1 45-34-1 Áá
+uplow \x00c9\x00e9 45-34-15 Éé
+uplow \x00dd\x00fd 45-34-13456 Ýý
+uplow \x0106\x0107 45-34-14 Ćć
+uplow \x0139\x013a 45-34-123 Ĺĺ
+uplow \x0143\x0144 45-34-1345 Ńń
+uplow \x0154\x0155 45-34-1235 Ŕŕ
+uplow \x015a\x015b 45-34-234 Śś
+uplow \x0179\x017a 45-34-1356 Źź
+uplow \x01f4\x01f5 45-34-1245 Ǵǵ
+uplow \x040c\x045c 45-34-13 Ќќ   cyrillic kje
+uplow \x1e30\x1e31 45-34-13 Ḱḱ
+uplow \x1e3e\x1e3f 45-34-134 Ḿḿ
+uplow \x1e54\x1e55 45-34-1234 Ṕṕ
+uplow \x1e54\x1e55 45-34-2456 Ẃẃ
+
+uplow \x010c\x010d 45-346-14 Čč
+uplow \x010e\x010f 45-346-145 Ďď
+uplow \x011a\x011b 45-346-15 Ěě
+uplow \x013d\x013e 45-346-123 Ľľ
+uplow \x0147\x0148 45-346-1345 Ňň
+uplow \x0158\x0159 45-346-1235 Řř
+uplow \x0160\x0161 45-346-234 Šš
+uplow \x0164\x0165 45-346-2345 Ťť
+uplow \x017d\x017e 45-346-1356 Žž
+uplow \x01cd\x01ce 45-346-1 Ǎǎ
+uplow \x01cf\x01d0 45-346-123 Ǐǐ
+uplow \x01d1\x01d2 45-346-135 Ǒǒ
+uplow \x01d3\x01d4 45-346-136 Ǔǔ
+uplow \x01e6\x01e7 45-346-1245 Ǧǧ
+uplow \x01e8\x01e9 45-346-13 Ǩǩ
+uplow \x021e\x021f 45-346-125 Ȟȟ
+uplow \x040e\x04e5 45-346-13456 Ўў   cyrillic short u
+uplow \x04d6\x04d7 45-346-15 Ӗӗ   cyrillic ie
 
 sign \x0300 45-16 ̀̀  grave accent
 noback correct [$l]"̀" "̀"*
 
+sign \x00b4 45-34 ´ acute accent
 sign \x0301 45-34 ́  acute accent
 noback correct [$l]"́" "́"*
 
@@ -229,6 +318,7 @@ noback pass2 @45-12456-6 @6-45-12456  move after capital sign
 sign \x0304 45-4-36 ̄  macron
 noback correct [$l]"̄" "̄"*
 
+sign \x02d8 4-346 ˘ uncombining breve
 sign \x0306 4-346 ̆  breve
 noback correct [$l]"̆" "̆"*
 
@@ -243,6 +333,28 @@ noback correct [$l]"̌" "̌"*
 
 sign \x0327 45-12346 ̧  cedilla
 noback correct [$l]"̧" "̧"*
+
+
+#   Unicode Ligatured Letters
+
+uppercase \x00c6 1-6-45-235-15 Æ
+lowercase \x00e6 1-45-235-15 æ
+uppercase \x0152 135-6-45-235-15 Œ
+lowercase \x0153 135-45-235-15 œ
+uppercase \x04d4 1-6-45-235-15 Ӕ cyrillic
+lowercase \x04d5 1-45-235-15 ӕ cyrillic
+uppercase \x0132 24-6-45-235-245 Ĳ
+lowercase \x0133 24-45-235-245 ĳ
+
+lowercase \xfb00 124-45-235-124 ﬀ
+lowercase \xfb01 124-45-235-24 ﬁ
+lowercase \xfb04 124-45-235-2345 ﬅ
+lowercase \xfb05 234-45-235-2345 ﬆ
+
+#\xa7f9 ꟹ
+#\xfb02 ﬃ
+#\xfb03 ﬄ
+#   ᾱ   ǟ   ḫ   ⨣   ẘẙ  Ɵ   ẗ   ǰ   Ⱥ   ɟⱦꝃ Ѣѣ
 
 
 #   Unicode Greek
@@ -298,21 +410,14 @@ punctuation \x00ad 36 - soft hyphen
 sign \x00ae 45-1235 ® registered
 sign \x00af 4-36 ¯
 #sign \x00ba 0 º
-sign \x00b4 45-56-12 ´ acute accent
 sign \x00b6 45-1234 ¶ pilcrow 
 sign \x00b8 45-12346 ¸ cedilla 
 punctuation \x00bb 456-356 »
 punctuation \x00bf 45-56-236 ¿
-uppercase \x00c6 1-6-45-235-15 Æ
-lowercase \x00e6 1-45-235-15 æ
-uppercase \x0132 24-6-45-235-245 Ĳ
-lowercase \x0133 24-45-235-245 ĳ
 uplow \x014a\x014b 45-1345 Ŋŋ
-uppercase \x0152 135-6-45-235-15 Œ
-lowercase \x0153 135-45-235-15 œ
 uplow \x018f\x0259 456-26 Əə
 #\x0259 ə  see \x018f
-sign \x02d8 4-346 ˘ uncombining breve
+
 
 space \x2000 0
 space \x2001 0
@@ -479,12 +584,4 @@ endword \x2019s 3-234
 endword s\x2019 234-3
 endword \x2019t 3-2345
 
-#\xa7f9 ꟹ
-
-lowercase \xfb00 124-45-235-124 ﬀ
-lowercase \xfb01 124-45-235-24 ﬁ
-#\xfb02 ﬃ
-#\xfb03 ﬄ
-lowercase \xfb04 124-45-235-2345 ﬅ
-lowercase \xfb05 234-45-235-2345 ﬆ
 
