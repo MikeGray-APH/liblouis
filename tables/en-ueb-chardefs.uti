@@ -334,6 +334,10 @@ noback correct [$l]"̌" "̌"*
 sign \x0327 45-12346 ̧  cedilla
 noback correct [$l]"̧" "̧"*
 
+lowercase \x1e97 45-25-2345 ẗ
+lowercase \x1e98 45-1246-2456 ẘ  http://archives.miloush.net/michkap/archive/2012/04/17/10294366.html
+lowercase \x1e99 45-1246-13456 ẙ
+
 
 #   Unicode Ligatured Letters
 
