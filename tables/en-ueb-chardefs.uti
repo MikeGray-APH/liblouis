@@ -425,6 +425,7 @@ punctuation \x00bf 45-56-236 ¿
 uplow \x014a\x014b 45-1345 Ŋŋ
 uplow \x018f\x0259 456-26 Əə
 #\x0259 ə  see \x018f
+uplow \x04d8\x04d9 456-26 Әә   cyrillic schwa
 
 
 space \x2000 0
