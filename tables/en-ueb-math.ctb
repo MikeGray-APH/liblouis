@@ -44,6 +44,7 @@ math \xf506 34
 math \xf507 0
 replace \xf507
 replace \x2064   # invisible add
+numericmodechars 
 
 #   complex fractions
 math \xf508 12356
@@ -58,6 +59,7 @@ math \xf50d 34
 math \xf50e 34
 math \xf50f 0
 replace \xf50f
+numericmodechars 
 
 #   subscripts
 math \xf580 0
