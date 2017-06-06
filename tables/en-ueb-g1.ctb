@@ -30,8 +30,10 @@ include en-ueb-chardefs.uti UEB specific char defs.
 #   some dots are undefined now
 include en-ueb-math.ctb UEB math from common linear format
 
+math \x2810 5
+
 numsign 3456  number sign, just a dots operand
-numericmodechars .,
+numericmodechars .,\x2810
 nocontractsign 56
 numericnocontchars abcdefghij
 

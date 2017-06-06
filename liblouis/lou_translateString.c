@@ -3575,15 +3575,18 @@ checkNumericMode()
 	{
 		if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
 		{
+			/*   this time it is because we are using
+			     \u2810 for the numeric space, it is set as
+			     CTC_NumericMode so that is why this is not needed   */
 			/*   this is a problem now?   */
 			/*   deal with numeric space   */
-			if
-			(   !table->usesNumericMode
-			 || (   table->usesNumericMode
-			     && src < srcmax
-			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
-			    )
-			)
+//			if
+//			(   !table->usesNumericMode
+//			 || (   table->usesNumericMode
+//			     && src < srcmax
+//			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
+//			    )
+//			)
 			{
 				numericMode = 0;
 				if(brailleIndicatorDefined(table->noContractSign))
