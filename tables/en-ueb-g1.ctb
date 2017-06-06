@@ -36,7 +36,7 @@ nocontractsign 56
 numericnocontchars abcdefghij
 
 #   add numeric space indicator
-noback context _$d["\s"]$d @5
+noback context _$d["\x2810"]$d @5
 
 #   remove numeric space indicator
 noback correct _$d["\""]$d "\s"
