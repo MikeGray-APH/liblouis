@@ -517,7 +517,7 @@ sign \x2033 2356-2356 ″ double prime (second derivative)
 sign \x2200 45-1 ∀ for all
 sign \x2202 4-145 ∂ partial derivative
 sign \x2203 45-26 ∃ there exists
-sign \x2204 45-26-4-156 ∄ there does not exist
+sign \x2204 4-16-45-26 ∄ there does not exist
 sign \x2205 4-245 ∅ empty set
 sign \x2207 45-145 ∇ nabla
 sign \x2208 45-15 ∈ element of
