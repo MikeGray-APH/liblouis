@@ -21,6 +21,8 @@
 # Semantic character sequences
 # Prefix characters, only definitions as they should always occur as pairs with other characters.
 
+include en-ueb-g2.ctb
+
 #   math begin/end
 replace \xf32e
 replace \xf32f
