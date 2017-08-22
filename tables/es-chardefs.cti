@@ -101,8 +101,8 @@ punctuation \x2010        36                  ‐                   HYPHEN
 punctuation \x2011        36                  ‑                   NON-BREAKING HYPHEN
 punctuation \x2012        36                  ‒                   FIGURE DASH
 punctuation \x2013        36                  –                   EN DASH
-punctuation \x2018        236                 ‘                   LEFT SINGLE QUOTATION MARK
-punctuation \x2019        236                 ’                   RIGHT SINGLE QUOTATION MARK
+punctuation \x2018        6-236                 ‘                   LEFT SINGLE QUOTATION MARK
+punctuation \x2019        6-236                 ’                   RIGHT SINGLE QUOTATION MARK
 punctuation \x201A        236                 ‚                   SINGLE LOW-9 QUOTATION MARK
 punctuation \x201B        236                 ‛                   SINGLE HIGH-REVERSED-9 QUOTATION MARK
 punctuation \x201C        236                 “                   LEFT DOUBLE QUOTATION MARK
