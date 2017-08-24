@@ -122,14 +122,12 @@ sign        \x0024        345-234             $                   DOLLAR SIGN
 math        \x0025        456-356             %                   PERCENT SIGN
 sign        \x0026        6-12346             &                   AMPERSAND
 math        \x002F        6-2                 /                   SOLIDUS
-math        \x002F\x002F  6-26-2              //
+
 math        \x003C        5-13                 <                   LESS-THAN SIGN
 math        \x003E        46-2                 >                   GREATER-THAN SIGN
 sign        \x0040        56-16               @                   COMMERCIAL AT
 sign        \x005C        5-3                 \                   REVERSE SOLIDUS
-math        \x005C\x005C  5-35-3              \\
 math        \x007B        5-123               {                   LEFT CURLY BRACKET
-sign        \x007C        456-123             ||
 math        \x007D        456-2               }                   RIGHT CURLY BRACKET
 
 
@@ -204,3 +202,8 @@ sign        \x20AC        456-15              €                   EURO SIGN
 
 
 # ----------------------------------------------------------------------------------------------
+
+# Multiple character definitions
+always        \x002F\x002F  6-26-2              //
+always        \x005C\x005C  5-35-3              \\
+always        \x007C\x007C  456-123             ||
