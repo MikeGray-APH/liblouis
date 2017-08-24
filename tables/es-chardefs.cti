@@ -129,6 +129,7 @@ sign        \x0040        56-16               @                   COMMERCIAL AT
 sign        \x005C        5-3                 \                   REVERSE SOLIDUS
 math        \x005C\x005C  5-35-3              \\
 math        \x007B        5-123               {                   LEFT CURLY BRACKET
+sign        \x007C        456-123             ||
 math        \x007D        456-2               }                   RIGHT CURLY BRACKET
 
 
