@@ -97,7 +97,6 @@ math        \x00F7        256                 ÷                   DIVISION SIGN
 
 punctuation \x2010        36                  ‐                   HYPHEN
 punctuation \x2011        36                  ‑                   NON-BREAKING HYPHEN
-punctuation \x2012        36                  ‒                   FIGURE DASH
 punctuation \x2013        36                  –                   EN DASH
 punctuation \x2018        6-236                 ‘                   LEFT SINGLE QUOTATION MARK
 punctuation \x2019        6-236                 ’                   RIGHT SINGLE QUOTATION MARK
@@ -189,6 +188,7 @@ lowercase   \x03C9        4-2456              ω                   GREEK SMALL L
 # Unicode 2000..206F  General Punctuation
 # ----------------------------------------------------------------------------------------------
 
+math \x2012        25-25                  ‒                   FIGURE DASH
 punctuation \x2014        36-36               —                   EM DASH
 punctuation \x2015        36-36               ―                   HORIZONTAL BAR
 punctuation \x2026        3-3-3               …                   HORIZONTAL ELLIPSIS
