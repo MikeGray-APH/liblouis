@@ -48,3 +48,16 @@ begcapsword 46-46
 always        \x002F\x002F  6-26-2
 always        \x005C\x005C  5-35-3
 always        \x007C\x007C  456-123
+
+# Numbers followed by letters a-j should be prefixed with dot5
+# Spanish Braille has no contractions so no worries there.
+noback context _$d["a"] @5-1
+noback context _$d["b"] @5-12
+noback context _$d["c"] @5-14
+noback context _$d["d"] @5-145
+noback context _$d["e"] @5-15
+noback context _$d["f"] @5-124
+noback context _$d["g"] @5-1245
+noback context _$d["h"] @5-125
+noback context _$d["i"] @5-24
+noback context _$d["j"] @5-245
