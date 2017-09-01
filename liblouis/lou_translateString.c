@@ -3535,6 +3535,8 @@ insertEmphases()
 	pre_src = src + 1;
 }
 
+static int numericPassage;
+
 static void
 checkNumericMode()
 {
@@ -3542,59 +3544,79 @@ checkNumericMode()
 	
 	if(!brailleIndicatorDefined(table->numberSign))
 		return;
-	
-	/*   not in numeric mode   */
-	if(!numericMode)
+
+	if(!numericPassage)
 	{
-		if(checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit, 0))
+		if(currentInput[src] == 0xe000)
 		{
-			numericMode = 1;
+			numericPassage = 1;
 			dontContract = 1;
-			for_updatePositions(
-				&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
 		}
-		else if(checkAttr(currentInput[src], CTC_NumericMode, 0))
+
+		/*   not in numeric mode   */
+		if(!numericMode)
 		{
-			for(i = src + 1; i < srcmax; i++)
+			if(checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit, 0))
 			{
-				if(checkAttr(currentInput[i], CTC_Digit | CTC_LitDigit, 0))
+				numericMode = 1;
+				dontContract = 1;
+				for_updatePositions(
+					&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+			}
+			else if(checkAttr(currentInput[src], CTC_NumericMode, 0))
+			{
+				for(i = src + 1; i < srcmax; i++)
 				{
-					numericMode = 1;
-					for_updatePositions(
-						&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
-					break;
+					if(checkAttr(currentInput[i], CTC_Digit | CTC_LitDigit, 0))
+					{
+						numericMode = 1;
+						for_updatePositions(
+							&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+						break;
+					}
+					else if(!checkAttr(currentInput[i], CTC_NumericMode, 0))
+						break;
 				}
-				else if(!checkAttr(currentInput[i], CTC_NumericMode, 0))
-					break;
+			}
+		}
+		
+		/*   in numeric mode   */
+		else
+		{
+			if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
+			{
+				/*   this time it is because we are using
+				     \u2810 for the numeric space, it is set as
+				     CTC_NumericMode so that is why this is not needed   */
+				/*   this is a problem now?   */
+				/*   deal with numeric space   */
+	//			if
+	//			(   !table->usesNumericMode
+	//			 || (   table->usesNumericMode
+	//			     && src < srcmax
+	//			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
+	//			    )
+	//			)
+				{
+					numericMode = 0;
+					if(brailleIndicatorDefined(table->noContractSign))
+					if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
+							for_updatePositions(
+								&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+				}
 			}
 		}
 	}
-	
-	/*   in numeric mode   */
 	else
 	{
-		if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
+		if(currentInput[src] == 0xe001)
 		{
-			/*   this time it is because we are using
-			     \u2810 for the numeric space, it is set as
-			     CTC_NumericMode so that is why this is not needed   */
-			/*   this is a problem now?   */
-			/*   deal with numeric space   */
-//			if
-//			(   !table->usesNumericMode
-//			 || (   table->usesNumericMode
-//			     && src < srcmax
-//			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
-//			    )
-//			)
-			{
-				numericMode = 0;
-				if(brailleIndicatorDefined(table->noContractSign))
-				if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
-						for_updatePositions(
-							&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
-			}
+			numericPassage = 0;
+			return;
 		}
+		if(brailleIndicatorDefined(table->noContractSign))
+		if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
+				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
 	}
 }
 
@@ -3605,6 +3627,7 @@ translateString ()
   int k;
   translation_direction = 1;
   markSyllables ();
+  numericPassage = 0;
   numericMode = 0;
   srcword = 0;
   destword = 0;        		/* last word translated */
