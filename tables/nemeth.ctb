@@ -151,13 +151,13 @@ math \xf5a7 0
 replace \xf5a7
 
 #   root
-math \xf5b0 126
-math \xf5b1 345
+math \xf5b0 146
+math \xf5b1 346
 math \xf5b2 12456
 
 #   square root
-math \xf5b3 345
-math \xf5b4 12456
+math \xf5b3 146
+math \xf5b4 346
 
 #   tables
 replace \xf600
