@@ -3116,6 +3116,8 @@ resolveEmphasisResets(
 	}
 }
 
+//static int capsOff;
+
 static void
 markEmphases()
 {
@@ -3135,7 +3137,29 @@ markEmphases()
 			last_caps = i;
 			caps_cnt = 0;
 		}
-			
+/*
+		if(capsOff)
+		{
+			if(currentInput[src] == 0xe005)
+			{
+				capsOff = 0;
+				return;
+			}
+		}
+		else
+		{
+			if(currentInput[src] == 0xe004)
+			{
+				capsOff = 1;
+				caps_start = -1;
+				last_caps = -1;
+				caps_cnt = 0;
+				return;
+			}
+		}
+
+		if(!capsOff)
+*/
 		if(checkAttr(currentInput[i], CTC_UpperCase, 0))
 		{
 			if(caps_start < 0)
@@ -3535,7 +3559,7 @@ insertEmphases()
 	pre_src = src + 1;
 }
 
-static int numericPassage;
+static int numericPassage, numericOff;
 
 static void
 checkNumericMode()
@@ -3544,6 +3568,24 @@ checkNumericMode()
 	
 	if(!brailleIndicatorDefined(table->numberSign))
 		return;
+
+	if(numericOff)
+	{
+		if(currentInput[src] == 0xe003)
+		{
+			numericOff = 0;
+			return;
+		}
+	}
+	else
+	{
+		if(currentInput[src] == 0xe002)
+		{
+			numericOff = 1;
+			numericPassage = 0;
+			return;
+		}
+	}
 
 	if(!numericPassage)
 	{
@@ -3628,6 +3670,8 @@ translateString ()
   translation_direction = 1;
   markSyllables ();
   numericPassage = 0;
+//  capsOff = 0;
+  numericOff = 0;
   numericMode = 0;
   srcword = 0;
   destword = 0;        		/* last word translated */
