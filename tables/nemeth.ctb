@@ -110,7 +110,7 @@ math \xf50b 6-3456
 
 #   simple fractions
 math \xf50c 1456
-math \xf50d 34
+math \xf50d 456-34
 math \xf50e 456-34
 math \xf50f 3456
 
@@ -127,7 +127,7 @@ math \xf584 45
 math \xf585 5
 
 #   sub/superscripts
-math \xf586 0
+math \xf585 0
 replace \xf586
 math \xf587 45-56
 math \xf588 5

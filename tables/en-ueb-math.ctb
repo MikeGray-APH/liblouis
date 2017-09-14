@@ -76,7 +76,7 @@ math \xf584 45
 math \xf585 5
 
 #   sub/superscripts
-math \xf586 0
+math \xf585 0
 replace \xf586
 math \xf587 45-56
 math \xf588 5
