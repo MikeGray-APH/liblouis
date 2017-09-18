@@ -76,7 +76,7 @@ math \xf584 45
 math \xf585 5
 
 #   sub/superscripts
-math \xf586 0
+math \xf585 0
 replace \xf586
 math \xf587 45-56
 math \xf588 5
@@ -147,3 +147,5 @@ noback pass2 @26-126[$d1-5]@345 @26*
 # Remove grouping from fractions
 noback pass2 @12356-126[$d1-5]@345-46-34_2 @12356*
 noback pass2 @46-34-126[$d1-5]@345-23456 @46-34*@23456
+
+sign \x2234 6-16 ∴ therefore   conlicts with Child

@@ -3116,6 +3116,8 @@ resolveEmphasisResets(
 	}
 }
 
+//static int capsOff;
+
 static void
 markEmphases()
 {
@@ -3135,7 +3137,29 @@ markEmphases()
 			last_caps = i;
 			caps_cnt = 0;
 		}
-			
+/*
+		if(capsOff)
+		{
+			if(currentInput[src] == 0xe005)
+			{
+				capsOff = 0;
+				return;
+			}
+		}
+		else
+		{
+			if(currentInput[src] == 0xe004)
+			{
+				capsOff = 1;
+				caps_start = -1;
+				last_caps = -1;
+				caps_cnt = 0;
+				return;
+			}
+		}
+
+		if(!capsOff)
+*/
 		if(checkAttr(currentInput[i], CTC_UpperCase, 0))
 		{
 			if(caps_start < 0)
@@ -3535,6 +3559,8 @@ insertEmphases()
 	pre_src = src + 1;
 }
 
+static int numericPassage, numericOff;
+
 static void
 checkNumericMode()
 {
@@ -3542,59 +3568,97 @@ checkNumericMode()
 	
 	if(!brailleIndicatorDefined(table->numberSign))
 		return;
-	
-	/*   not in numeric mode   */
-	if(!numericMode)
+
+	if(numericOff)
 	{
-		if(checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit, 0))
+		if(currentInput[src] == 0xe003)
 		{
-			numericMode = 1;
-			dontContract = 1;
-			for_updatePositions(
-				&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+			numericOff = 0;
+			return;
 		}
-		else if(checkAttr(currentInput[src], CTC_NumericMode, 0))
+	}
+	else
+	{
+		if(currentInput[src] == 0xe002)
 		{
-			for(i = src + 1; i < srcmax; i++)
+			numericOff = 1;
+			numericPassage = 0;
+			return;
+		}
+	}
+
+	if(!numericPassage)
+	{
+		if(currentInput[src] == 0xe000)
+		{
+			numericPassage = 1;
+			dontContract = 1;
+		}
+
+		/*   not in numeric mode   */
+		if(!numericMode)
+		{
+			if(checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit, 0))
 			{
-				if(checkAttr(currentInput[i], CTC_Digit | CTC_LitDigit, 0))
+				numericMode = 1;
+				dontContract = 1;
+				for_updatePositions(
+					&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+			}
+			else if(checkAttr(currentInput[src], CTC_NumericMode, 0))
+			{
+				for(i = src + 1; i < srcmax; i++)
 				{
-					numericMode = 1;
-					for_updatePositions(
-						&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
-					break;
+					if(checkAttr(currentInput[i], CTC_Digit | CTC_LitDigit, 0))
+					{
+						numericMode = 1;
+						for_updatePositions(
+							&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+						break;
+					}
+					else if(!checkAttr(currentInput[i], CTC_NumericMode, 0))
+						break;
 				}
-				else if(!checkAttr(currentInput[i], CTC_NumericMode, 0))
-					break;
+			}
+		}
+		
+		/*   in numeric mode   */
+		else
+		{
+			if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
+			{
+				/*   this time it is because we are using
+				     \u2810 for the numeric space, it is set as
+				     CTC_NumericMode so that is why this is not needed   */
+				/*   this is a problem now?   */
+				/*   deal with numeric space   */
+	//			if
+	//			(   !table->usesNumericMode
+	//			 || (   table->usesNumericMode
+	//			     && src < srcmax
+	//			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
+	//			    )
+	//			)
+				{
+					numericMode = 0;
+					if(brailleIndicatorDefined(table->noContractSign))
+					if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
+							for_updatePositions(
+								&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
+				}
 			}
 		}
 	}
-	
-	/*   in numeric mode   */
 	else
 	{
-		if(!checkAttr(currentInput[src], CTC_Digit | CTC_LitDigit | CTC_NumericMode, 0))
+		if(currentInput[src] == 0xe001)
 		{
-			/*   this time it is because we are using
-			     \u2810 for the numeric space, it is set as
-			     CTC_NumericMode so that is why this is not needed   */
-			/*   this is a problem now?   */
-			/*   deal with numeric space   */
-//			if
-//			(   !table->usesNumericMode
-//			 || (   table->usesNumericMode
-//			     && src < srcmax
-//			     && !checkAttr(currentInput[src + 1], CTC_Digit | CTC_LitDigit, 0)
-//			    )
-//			)
-			{
-				numericMode = 0;
-				if(brailleIndicatorDefined(table->noContractSign))
-				if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
-						for_updatePositions(
-							&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
-			}
+			numericPassage = 0;
+			return;
 		}
+		if(brailleIndicatorDefined(table->noContractSign))
+		if(checkAttr(currentInput[src], CTC_NumericNoContract, 0))
+				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0);
 	}
 }
 
@@ -3605,6 +3669,9 @@ translateString ()
   int k;
   translation_direction = 1;
   markSyllables ();
+  numericPassage = 0;
+//  capsOff = 0;
+  numericOff = 0;
   numericMode = 0;
   srcword = 0;
   destword = 0;        		/* last word translated */
