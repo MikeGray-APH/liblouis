@@ -258,6 +258,8 @@ table_files = \
 	nemethdefs.cti \
 	nemeth_edit.ctb \
 	nemeth-ueb.ctb \
+	nemeth-ueb-chardefs.ctb \
+	nemeth-ueb-g1.ctb \
 	ne.tbl \
 	nl-BE.dis \
 	nl-BE-g0.utb \
