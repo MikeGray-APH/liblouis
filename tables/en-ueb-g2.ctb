@@ -3737,7 +3737,11 @@ sufword rafter 1235-1-124-2345-12456
 
 #   extra shortforms
 
-match %[_~^]%<* unsaid ([Ss]|['’][Ss])?%>*%[_~^] 136-1345-234-145
+match %[_~^]%<* unrepaid ([Ss]|['’][Ss])?%>*%[_~^] 136-1345-1235-15-234-145
+match %[_~^]%<* unsaid   ([Ss]|['’][Ss])?%>*%[_~^] 136-1345-234-145
+
+contraction unrepd
+contraction unsd
 
 #   misc
 
