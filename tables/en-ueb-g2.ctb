@@ -560,6 +560,8 @@ empmatchafter match %[^_~]%<* be [BFHJMOPQWXZbfhjmopqwxz] 23
 
 nofor sufword be 23
 
+sufword bethesda 23-2346-234-145-1
+
 #   be[cfhlnsty] are handled in 10.9.5
 word beg =
 
