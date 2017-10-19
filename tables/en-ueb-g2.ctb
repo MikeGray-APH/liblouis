@@ -596,6 +596,8 @@ sufword conned 14-135-1345-1345-1246
 nofor begword con 25
 
 # dis   10.6.1   10.6.2   10.6.3   10.6.4
+word disc 145-24-234-14
+word dish 145-24-146
 word diss 145-24-234-234
 empmatchafter match %[^_~]%<* dis [Cc]![Ss'’] 256
 empmatchafter match %[^_~]%<* dis [Hh][Ee]![DSVdsv] 256
