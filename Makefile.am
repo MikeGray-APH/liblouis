@@ -23,6 +23,11 @@ distwin32-dir :
 	@if which i586-mingw32msvc-gcc >/dev/null; then \
 	  ./configure --host i586-mingw32msvc --prefix=$(CURDIR)/liblouis-$(VERSION)-win32 && \
 	  make LDFLAGS="$$LDFLAGS -avoid-version -Xcompiler -static-libgcc" && \
+	  make check WINE=wine32&& \
+	  make install; \
+	elif which i686-w64-mingw32-gcc >/dev/null; then \
+	  ./configure --host i686-w64-mingw32 --prefix=$(CURDIR)/liblouis-$(VERSION)-win32 && \
+	  make LDFLAGS="$$LDFLAGS -avoid-version -Xcompiler -static-libgcc" && \
 	  make install; \
 	elif which docker >/dev/null; then \
 	  gtar --transform='s/Dockerfile.dev/Dockerfile/' --exclude-from=.dockerignore -cz * | docker build -t liblouis-dev - && \
@@ -44,6 +49,7 @@ distwin64-dir :
 	@if which x86_64-w64-mingw32-gcc >/dev/null; then \
 	  ./configure --host x86_64-w64-mingw32 --prefix=$(CURDIR)/liblouis-$(VERSION)-win64 && \
 	  make LDFLAGS='-avoid-version -Xcompiler -static-libgcc' && \
+	  make check WINE=wine64&& \
 	  make install; \
 	elif which docker >/dev/null; then \
 	  gtar --transform='s/Dockerfile.dev/Dockerfile/' --exclude-from=.dockerignore -cz * | docker build -t liblouis-dev - && \
@@ -55,3 +61,4 @@ distwin64-dir :
 # .dockerignore
 .dockerignore : .gitignore
 	sed -e 's|^\([^/#]\)|# \1|' -e 's|^/||' -e 's|\+|\\+|g' $< >$@
+

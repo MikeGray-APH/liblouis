@@ -156,11 +156,6 @@ Testing Translation Tables interactively
 * lou_checkhyphens::
 * lou_checkyaml::
 
-Automated Testing of Translation Tables
-
-* YAML Tests::
-* Doctests::
-
 Programming with liblouis
 
 * Overview (library)::
@@ -858,7 +853,15 @@ Braille dot pattern to indicate the beginning of a phrase.
 begemphphrase bold 456-46-46
 @end example
 
-@opcode{endemphphrase before, <emphasis class> before <dot pattern>}
+@c define a special opcode macro that can handle the two-word nature
+@c of the endemphphrase opcode
+@macro endemphphraseopcode{where}
+@opcodeindex endemphphrase \where\
+@anchor{endemphphrase \where\ opcode}
+@item endemphphrase <emphasis class> \where\ <dot pattern>
+@end macro
+
+@endemphphraseopcode{before}
 Braille dot pattern to indicate the end of a phrase. The closing indicator
 will be placed before the last word of the phrase.
 
@@ -866,7 +869,7 @@ will be placed before the last word of the phrase.
 endemphphrase bold before 456-46
 @end example
 
-@opcode{endemphphrase after, <emphasis class> after <dot pattern>}
+@endemphphraseopcode{after}
 Braille dot pattern to indicate the end of a phrase. The closing
 indicator will be placed after the last word of the phrase. If both
 @code{endemphphrase <emphasis class> before} and @code{endemphphrase
@@ -952,6 +955,11 @@ These opcodes cause special processing to be carried out.
 This opcode has no operands. If it is specified, words or parts of
 words in all caps are not contracted. This is needed for languages
 such as Norwegian.
+
+Note: If you use the capsnocont opcode and do not define the
+      @opcoderef{begcapsword} indicator, every cap will be marked with the
+@opcoderef{capsletter} indicator. This is useful if you need to process caps
+separately in a later pass.
 
 @end table
 
@@ -1267,7 +1275,7 @@ Not properly defined
 @end table
 
 The opcodes which define and use character classes are shown below.
-For examples see @file{fr-abrege.ctb}.
+For examples see @file{el.ctb}.
 
 @table @code
 
@@ -2001,17 +2009,60 @@ Do a backward translation.
 
 @end table
 
-To use it to translate or back-translate a file use a line like
+If no options are given forward translation is assumed.
+
+Use the following command to do a forward translation with translation
+table @file{en-us-g2.ctb}. The resulting braille is ASCII encoded (as
+defined in @file{en-us-g2.ctb}).
 
 @example
-lou_translate --forward en-us-g2.ctb < input.txt > output.brl
+lou_translate --forward en-us-g2.ctb < input.txt
+@end example
+
+The next example illustrates a forward translation with translation
+table @file{en-us-g2.ctb} and display table @file{unicode.dis}. The
+resulting braille is encoded as Unicode dot patterns (as defined in
+@file{unicode.dis}).
+
+@example
+lou_translate --forward unicode.dis,en-us-g2.ctb < input.txt
 @end example
 
 Use a pipe if you would rather just pass some given text to the
-translator. The result will be written to standard output:
+translator.
 
 @example
-echo 'Text to translate' | lou_translate --forward en-us-g2.ctb
+echo "The quick brown fox jumps over the lazy dog" | lou_translate -f unicode.dis,en-us-g2.ctb
+@end example
+
+The result will be written to standard output:
+
+@example
+⠠⠮ ⠟⠅ ⠃⠗⠪⠝ ⠋⠕⠭ ⠚⠥⠍⠏⠎ ⠕⠧⠻ ⠮ ⠇⠁⠵⠽ ⠙⠕⠛
+@end example
+
+Backward translation can be done as follows:
+
+@example
+echo ",! qk br@{n fox jumps ov@} ! lazy dog" | lou_translate --backward en-us-g2.ctb
+@end example
+
+which results in
+
+@example
+The quick brown fox jumps over the lazy dog
+@end example
+
+You can also do a backward translation using Unicode dot patterns
+
+@example
+echo "⠠⠮ ⠟⠅ ⠃⠗⠪⠝ ⠋⠕⠭" | lou_translate --backward unicode.dis,en-us-g2.ctb
+@end example
+
+resulting in
+
+@example
+The quick brown fox
 @end example
 
 @node lou_checkhyphens
@@ -2071,30 +2122,14 @@ where you define the table that is to be tested and any number of
 words or phrases to translate together with their respective expected
 translation.
 
-@table @asis
-@item YAML tests
 The YAML tests are data driven, i.e. you give the test data, a string
 to translate and the expected output. The data is in a standard format
 namely YAML. If you have @file{libyaml} installed they will
 automatically be invoked as part of the standard @command{make check}
 command.
 
-@item Doctests
-The doctests are based on a technology used in Python where you define
-your tests as if you were sitting at a terminal session with a Python
-interpreter. They only work with either Python2 and Python3 but not
-from plain C, so you need Python and you will have to compile with
-UCS4.
-@end table
-
-@menu
-* YAML Tests::
-* Doctests::
-@end menu
-
-@node YAML Tests
+@anchor{YAML Tests}
 @section YAML Tests
-
 @url{http://yaml.org/,YAML} is a human readable data serialization
 format that allows for an easy and compact way to define tests.
 
@@ -2267,7 +2302,7 @@ passed in using the ``flow style'' notation.
 A list of translation modes that should be used for this test. If not
 defined defaults to 0. Valid mode values are @samp{noContractions},
 @samp{compbrlAtCursor}, @samp{dotsIO}, @samp{comp8Dots},
-@samp{pass1Only}, @samp{compbrlLeftCursor}, @samp{otherTrans},
+@samp{pass1Only}, @samp{compbrlLeftCursor},
 @samp{ucBrl}, @samp{noUndefinedDots} or @samp{partialTrans}.
 @end table
 
@@ -2343,32 +2378,6 @@ tests:
   - [..., ...]
   - [..., ...]
 @end example
-
-@node Doctests
-@section Doctests
-A doctest looks like you typed a command at the Python command line
-and got some output, e.g.
-
-@example
->>> translate(['table.ctb'], "Hello", mode=compbrlLeftCursor)
-("HELLO", [0,1,2,3], [0,1,2,3], 0)
-@end example
-
-There is a convenience wrapper which hides away much of the complexity
-of above example so you can write stuff like 
-
-@example
->>> t.braille('the cat sat on the mat')
-u'! cat sat on ! mat'
-@end example
-
-Essentially you are writing code, so the doctests allow you to do more
-flexible tests that are much closer to the raw iron than any of the
-other tests. However the doctests will only work in either Python2 or
-Python3.
-
-For examples on how to create doctests please see @file{*_test.txt} in
-the doctest directory in the source distribution.
 
 @node Programming with liblouis
 @chapter Programming with liblouis
@@ -2709,20 +2718,6 @@ patterns to be Unicode Braille rather than the liblouis
 representation. Note that you will not notice any change when setting
 @code{ucBrl} unless @code{dotsIO} is also set. @code{lou_dotsToChar}
 and @code{lou_backTranslate} recognize Unicode braille automatically.
-
-The @code{otherTrans} mode needs special description. If it is set 
-liblouis will attempt to call a wrapper for another translator. These 
-other translators are usually for Asian languages. The calling sequence 
-is the same as for liblouis itself except that the @code{trantab} 
-parameter gives the name of the other translator, possibly abbreviated, 
-followed by a colon, followed by whatever other information the other 
-translator needs. This is specific for each translator. If no such 
-information is needed the colon should be omitted. The result of calling 
-either the translate or back-translate functions with this mode bit set 
-will be the same as calling without it set. That is, the wrapper for the 
-other translator simulates a call to liblouis. Note that the wrappers 
-are not implemented at this time. Setting this mode bit will result in 
-failure (return value of 0).
 
 @node lou_backTranslateString
 @section lou_backTranslateString
@@ -3210,15 +3205,15 @@ directory. Usage information is included in the Python module itself.
 @c  LocalWords:  tablelist fileName printindex deprecatedopcode setDataPath
 @c  LocalWords:  getDataPath MathML suboperands logEnd liblouisutdml whitespace
 @c  LocalWords:  xhhhh yhhhhh zhhhhhhhh OpenOffice documentencoding
-@c  LocalWords:  YAML Doctests JSON logLevels nocontractsign OSX DLL
+@c  LocalWords:  YAML JSON logLevels nocontractsign OSX DLL
 @c  LocalWords:  MERCHANTABILITY registerLogCallback setLogLevel brf
 @c  LocalWords:  cindex chardefs xhtml pxref dec multi hyph dic Aa al
 @c  LocalWords:  mrow mfrac emphclass transnote subsubsection begemph
 @c  LocalWords:  endemph emphletter begemphword endemphword www cd th
 @c  LocalWords:  lenemphphrase begemphphrase endemphphrase andthe se
 @c  LocalWords:  abrege decrement pre cornf comf scano cornm cornp po
-@c  LocalWords:  h's brl testtrans UCS asis libyaml doctests url yaml
+@c  LocalWords:  h's brl testtrans UCS asis libyaml url yaml
 @c  LocalWords:  testmode iftex unicode ueb xfail eo noContractions
-@c  LocalWords:  dotsIO otherTrans ucBrl noUndefinedDots partialTrans
+@c  LocalWords:  dotsIO ucBrl noUndefinedDots partialTrans
 @c  LocalWords:  abc doctest inString enum cp outbufbuf logcallback fprint
 @c  LocalWords:  lbu EOF heckTable fn ispell

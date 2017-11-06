@@ -1,4 +1,4 @@
-SUBDIRS = gnulib
+SUBDIRS = gnulib lou_maketable.d
 
 AM_CPPFLAGS =					\
 	-I$(top_srcdir)/liblouis		\
@@ -41,7 +41,14 @@ bin_PROGRAMS =					\
 	lou_translate				\
 	lou_trace				\
 	lou_compare				\
-	lou_checkyaml
+	lou_tableinfo
+
+# install lou_checkyaml only if libyaml is found
+if WITH_YAML
+bin_PROGRAMS += lou_checkyaml
+else
+noinst_PROGRAMS = lou_checkyaml
+endif
 
 lou_allround_SOURCES = lou_allround.c
 lou_checkhyphens_SOURCES = lou_checkhyphens.c
@@ -51,3 +58,26 @@ lou_translate_SOURCES =	lou_translate.c
 lou_trace_SOURCES = lou_trace.c
 lou_compare_SOURCES = lou_compare.c
 lou_checkyaml_SOURCES =	lou_checkyaml.c
+lou_tableinfo_SOURCES =	lou_tableinfo.c
+
+if !CROSS_COMPILING
+dist_bin_SCRIPTS = \
+	lou_maketable.d/lou_maketable
+nobase_dist_bin_SCRIPTS = \
+	lou_maketable.d/export_chunked_words.py \
+	lou_maketable.d/generate_alphabet.py    \
+	lou_maketable.d/lou_maketable.mk        \
+	lou_maketable.d/make_suggestions.py     \
+	lou_maketable.d/submit_rows.py          \
+	lou_maketable.d/submit_rows.sh          \
+	lou_maketable.d/submit_rules.py         \
+	lou_maketable.d/submit_rules.sh         \
+	lou_maketable.d/substrings.pl           \
+	lou_maketable.d/utils.py                \
+	lou_maketable.d/wrap_patgen.sh
+endif
+
+if HAVE_SOURCE_FORMATTER
+format-sources-local:
+	for file in $(SOURCES); do $(SOURCE_FORMATTER) -i $$file; done
+endif

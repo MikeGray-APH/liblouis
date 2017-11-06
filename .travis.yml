@@ -10,6 +10,13 @@ language: c
 services:
   - docker
 
+env:
+  global:
+    # COVERITY_SCAN_TOKEN
+    - secure: "k2AM90pXF/IqX8CRSUPD3dkMktu9IUtFafDVvA1iC4p7hMfwOM4UIC/0E5Dqxwv4ULc7yqbWVchZwHMqteEqcJX8xbxsGqt4s1LtNosV2xjikbGmXVl3cp0qqv3exVcUaxtzxDs2Ee379sTUpVDK314M9oH5ky4N2L+971c1v84="
+    # GITHUB_TOKEN
+    - secure: "FbDvOO7Nqih9z0S+9RL/cvz/VTM5nlEUgJdUT7MefFjIAh+YCfv5sw6FkQpaiOx4xkd63tLrUvjJXi7fy4oERLDO2Qk4OOsntJUfNZqWlsGHZWUTfvgYkcNyNhXe2P4lKnnFaZbqui9Ec9OdnsR1DmrtIoq24BKTxYXCsxdux04="
+
 matrix:
   include:
     - compiler: gcc
@@ -33,6 +40,7 @@ before_install:
     else
         source .travis/before_install/gcc.sh;
     fi
+  - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 script:
   - cd $TRAVIS_BUILD_DIR
@@ -50,7 +58,9 @@ after_failure:
     fi
 
 after_success:
-  - if [ "$BUILD_JS" == yes ]; then
+  - if [ "$BUILD_MINGW" == yes ]; then
+        source .travis/after_success/mingw.sh;
+    elif [ "$BUILD_JS" == yes ]; then
         source .travis/after_success/emscripten.sh;
     fi
 
@@ -58,7 +68,12 @@ after_success:
 notifications:
    irc: "irc.oftc.net#liblouis"
 
-# do not build on the following branches
-branches:
-  except:
-    - ikiwiki_ctl
+addons:
+  coverity_scan:
+    project:
+      name: "liblouis/liblouis"
+      description: "Build submitted via Travis CI"
+    notification_email: liblouis-liblouisxml@freelists.org
+    build_command_prepend: "./autogen.sh && ./configure && make clean"
+    build_command:   "make"
+    branch_pattern: coverity_scan

@@ -91,18 +91,18 @@ TAGS
 /gnulib/*.la
 /gnulib/Makefile
 /gnulib/Makefile.in
-/gnulib/arg-nonnull.h
-/gnulib/c++defs.h
+/gnulib/alloca.h
 /gnulib/dirent.h
 /gnulib/errno.h
 /gnulib/getopt.h
+/gnulib/limits.h
 /gnulib/stddef.h
+/gnulib/stdint.h
 /gnulib/stdio.h
 /gnulib/stdlib.h
 /gnulib/string.h
 /gnulib/sys/
 /gnulib/unistd.h
-/gnulib/warn-on-use.h
 
 # /liblouis/
 /liblouis/.libs
@@ -132,10 +132,11 @@ TAGS
 /man/lou_allround.1
 /man/lou_checkhyphens.1
 /man/lou_checktable.1
+/man/lou_checkyaml.1
 /man/lou_debug.1
+/man/lou_tableinfo.1
 /man/lou_trace.1
 /man/lou_translate.1
-/man/lou_checkyaml.1
 
 # /python/
 /python/Makefile
@@ -198,15 +199,12 @@ TAGS
 /tests/resolve_table
 /tests/resolve_table.h
 /tests/squash_space
+/tests/suggestChunks
 /tests/typeform
 /tests/typeform_for_emphclass
 /tests/uplow_with_unicode
 /tests/yaml/*.log
 /tests/yaml/*.trs
-
-# /tests/doctests/
-/tests/doctests/Makefile
-/tests/doctests/Makefile.in
 
 # /tests/yaml/
 /tests/yaml/Makefile
@@ -249,6 +247,7 @@ TAGS
 /tools/lou_checktable
 /tools/lou_checkyaml
 /tools/lou_debug
+/tools/lou_tableinfo
 /tools/lou_trace
 /tools/lou_translate
 /tools/lou_compare
@@ -262,10 +261,10 @@ TAGS
 /tools/gnulib/*.la
 /tools/gnulib/Makefile
 /tools/gnulib/Makefile.in
-/tools/gnulib/arg-nonnull.h
-/tools/gnulib/c++defs.h
 /tools/gnulib/errno.h
+/tools/gnulib/getopt-cdefs.h
 /tools/gnulib/getopt.h
+/tools/gnulib/limits.h
 /tools/gnulib/stddef.h
 /tools/gnulib/stdint.h
 /tools/gnulib/stdio.h
@@ -276,8 +275,6 @@ TAGS
 /tools/gnulib/unistr.h
 /tools/gnulib/unistr/.dirstamp
 /tools/gnulib/unitypes.h
-/tools/gnulib/unused-parameter.h
-/tools/gnulib/warn-on-use.h
 
 # /tools/gnulib/unistr/
 /tools/gnulib/unistr/.libs
@@ -285,6 +282,11 @@ TAGS
 /tools/gnulib/unistr/*.o
 /tools/gnulib/unistr/*.la
 /tools/gnulib/unistr/*.lo
+
+# /tools/lou_maketable.d
+/tools/lou_maketable.d/lou_maketable
+/tools/lou_maketable.d/Makefile
+/tools/lou_maketable.d/Makefile.in
 
 # stuff used with /tools/lou_compare
 input.txt
@@ -303,6 +305,10 @@ output.txt
 # /windows/include
 /windows/include/Makefile
 /windows/include/Makefile.in
+
+# /windows/utils
+/windows/utils/Makefile
+/windows/utils/Makefile.in
 
 # stuff for local development
 local/

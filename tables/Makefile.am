@@ -43,19 +43,18 @@ table_files = \
 	cy-cy-g2.ctb \
 	cy.tbl \
 	Cz-Cz-g1.utb \
-	da-chardefs6.cti \
-	da-dk-common6.uti \
+	da-dk-6miscChars.cti \
 	da-dk.dis \
 	da-dk-g08.ctb \
 	da-dk-g16.ctb \
+	da-dk-g16-lit.ctb \
 	da-dk-g18.ctb \
 	da-dk-g26.ctb \
 	da-dk-g26l.ctb \
-	da-dk-g26-patches.cti \
+	da-dk-g26-lit.ctb \
+	da-dk-g26l-lit.ctb \
 	da-dk-g28.ctb \
 	da-dk-g28l.ctb \
-	da-dk-g2core.cti \
-	da-dk-nocaps.uti \
 	da-dk-octobraille.dis \
 	da-lt.ctb \
 	da.tbl \
@@ -158,7 +157,6 @@ table_files = \
 	gon.ctb \
 	gon.tbl \
 	gr-bb.ctb \
-	gr-gr-g1.utb \
 	gr-pl-comp8.uti \
 	gu-in-g1.utb \
 	gujarati.cti \
@@ -169,13 +167,20 @@ table_files = \
 	he.tbl \
 	hi-in-g1.utb \
 	hi.tbl \
-	hr.ctb \
-	hr.tbl \
+	hr-chardefs.cti \
+	hr-comp8.tbl \
+	hr-comp8.utb \
+	hr-digits.uti \
+	hr-g1.ctb \
+	hr-g1.tbl \
+	hr-translation.cti \
 	hu-backtranslate-correction.dis \
 	hu-chardefs.cti \
 	hu-exceptionwords.cti \
 	hu-hu-comp8.ctb \
 	hu-hu-g1.ctb \
+	hu-hu-g2.ctb \
+	hu-hu-g2_exceptions.cti \
 	hu.tbl \
 	hy.ctb \
 	hyph_brl_da_dk.dic \
@@ -315,6 +320,8 @@ table_files = \
 	se-se.dis \
 	Se-Se-g1.utb \
 	si-in-g1.utb \
+	sin.cti \
+	sin.utb \
 	sk-chardefs.cti \
 	sk-g1.ctb \
 	sk-sk-g1.utb \

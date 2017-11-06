@@ -25,7 +25,7 @@ tests:
   - [⠘⠺, word]
   - [⠸⠍, many]
   - [⠐⠝, name]
-  - [⠁⠰⠝, ation]
+#  - [⠁⠰⠝, ation]
   # #311: The grade 1 symbol indicator.
   - [⠰⠃, b]
   - [⠰⠠⠃, B]
@@ -35,3 +35,38 @@ tests:
   - [⠼⠁⠰⠠⠁, 1A]
   # #309: Ensure correct back-translation to "this".
   - [⠹, this]
+
+  # #360: Contractions followed by punctuation
+  # 1-letter contractions
+  - [⠃⠂, "but,"]
+  - [⠃⠲, "but."]
+  - [⠉⠂, "can,"]
+  - [⠙⠂, "do,"]
+  # multi-letter contractions
+  - [⠁⠃⠂, "about,"]
+  - [⠁⠃⠲, "about."]
+  - [⠁⠃⠧⠂, "above,"]
+
+  # Make sure back-translation for words with "ea" after letters that
+  # have contractions associated, such as words like meat, head and
+  # others works properly.
+  # See https://github.com/liblouis/liblouis/pull/350
+  - [⠍⠂⠞, "meat"]
+  - [⠓⠂⠙, "head"]
+
+  # #364: Whole word contractions followed by other contractions.
+  # In this case, the whole word contraction should not apply.
+  - [⠁⠇⠐⠕, alone]
+  - [⠃⠜, bar]
+  - [⠃⠢, ben]
+  - [⠠⠃⠢, Ben]
+#  - [⠙⠨⠑, dance]
+#  - [⠋⠰⠑, fence]
+  - [⠓⠻, her]
+  - [⠎⠯, sand]
+  - [⠎⠔, sin]
+  - [⠎⠬, sing]
+  - [⠠⠎⠬, Sing]
+  - [⠎⠷, sof]
+#  - [⠎⠰⠛, song]
+  - [⠹⠬, thing]

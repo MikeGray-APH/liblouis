@@ -1,4 +1,4 @@
-SUBDIRS = tables tablesWithMetadata doctests yaml ueb_test_data
+SUBDIRS = tables tablesWithMetadata yaml ueb_test_data
 
 AM_CPPFLAGS =					\
 	-I$(top_srcdir)/liblouis		\
@@ -49,6 +49,7 @@ typeform_SOURCES = typeform.c
 typeform_for_emphclass_SOURCES = typeform_for_emphclass.c
 uplow_with_unicode_SOURCES = uplow_with_unicode.c
 check_metadata_SOURCES = check_metadata.c
+suggestChunks_SOURCES = suggestChunks.c
 
 # Note that this is not currently included in check_programs below
 # otherwise make check would never complete.
@@ -91,72 +92,64 @@ program_TESTS =					\
 	squash_space				\
 	typeform				\
 	typeform_for_emphclass			\
-	uplow_with_unicode
+	uplow_with_unicode				\
+	suggestChunks
 
 check_PROGRAMS = $(program_TESTS)
 
-dist_check_SCRIPTS =				\
+dist_check_SCRIPTS =
+
+# The test scripts aren't really set up to work in a cross compilation
+if !CROSS_COMPILING
+dist_check_SCRIPTS +=	 			\
 	check_all_tables.pl			\
 	check_endless_loop.pl			\
 	check_included_tables.sh		\
 	multiple_table_path.pl			\
 	ueb_test_data.pl
-
-# if we have Python and liblouis is configured with ucs4 then we can
-# invoke the python based tests
-if HAVE_PYTHON
-if HAVE_UCS4
-dist_check_SCRIPTS += \
-	check_doctests.py
-endif
 endif
 
 # The present_progressive should not really fail but for the moment
 # the issue doesn't seem to be critical enough that anybody has enough
 # interest to fix it.
 XFAIL_TESTS =					\
+	check_all_tables.pl			\
 	present_progressive			\
 	lastworditalafter			\
 	en_gb_g1_italics			\
 	squash_space				\
 	compbrlAtCursor
 
-# en-ueb-symbols_harness.yaml defines the desired behaviour.
-# Apparently the tables aren't quite there yet.
-XFAIL_TESTS += yaml/en-ueb-symbols_harness.yaml
-
-# FIXME: According to Bue the Danish yaml tests need to be regenerated
-# from scratch. They produce numerous failures with his new tables
-XFAIL_TESTS +=					\
-	yaml/da-dk-g26-dictionary_harness.yaml	\
-	yaml/da-dk-g28-dictionary_harness.yaml
-
-
 dist_yaml_TESTS =				\
 	yaml/ar-ar-g1_harness.yaml		\
 	yaml/ar-fa_harness.yaml			\
+	yaml/back_cont_then_punc.yaml		\
 	yaml/begcaps_endcaps.yaml		\
 	yaml/capsnocont.yaml			\
+	yaml/capsword_for_back.yaml		\
 	yaml/chr-us-g1_harness.yaml		\
-	yaml/da-dk-g08-back.yaml		\
+	yaml/before_begmidword.yaml		\
 	yaml/da-dk-g08.yaml			\
+	yaml/da-dk-g16.yaml			\
 	yaml/da-dk-g16-dictionary_harness.yaml	\
-	yaml/da-dk-g18-back.yaml		\
+	yaml/da-dk-g16-lit.yaml			\
 	yaml/da-dk-g18-dictionary_harness.yaml	\
 	yaml/da-dk-g18.yaml			\
+	yaml/da-dk-g26.yaml			\
 	yaml/da-dk-g26-dictionary_harness.yaml	\
-	yaml/da-dk-g28-back.yaml		\
+	yaml/da-dk-g26-lit.yaml			\
+	yaml/da-dk-g26l.yaml			\
+	yaml/da-dk-g26l-lit.yaml		\
 	yaml/da-dk-g28-dictionary_harness.yaml	\
-	yaml/da-dk-g28l-back.yaml		\
-	yaml/da-dk-g28l.yaml			\
 	yaml/da-dk-g28.yaml			\
+	yaml/da-dk-g28l.yaml			\
 	yaml/el-backward.yaml			\
 	yaml/el-forward.yaml			\
 	yaml/emphasis-full.yaml			\
 	yaml/emphasis-no-context.yaml		\
-	yaml/en-gb-g1_harness.yaml		\
 	yaml/en-GB-g2_backward.yaml		\
 	yaml/en-GB-g2_harness.yaml		\
+	yaml/en-gb-g1_harness.yaml		\
 	yaml/en-ueb-02-stand_alone.yaml		\
 	yaml/en-ueb-03-symbols.yaml		\
 	yaml/en-ueb-05-grade_1_mode.yaml	\
@@ -167,9 +160,9 @@ dist_yaml_TESTS =				\
 	yaml/en-ueb-10-13-contractions.yaml	\
 	yaml/en-ueb-g1_backward.yaml		\
 	yaml/en-ueb-g1_harness.yaml		\
+	yaml/en-ueb-g2-dictionary_harness.yaml	\
 	yaml/en-ueb-g2_backward.yaml		\
 	yaml/en-ueb-g2_backward_no_dis.yaml	\
-	yaml/en-ueb-g2-dictionary_harness.yaml	\
 	yaml/en-ueb-math.yaml			\
 	yaml/en-ueb-symbols_harness.yaml	\
 	yaml/en-us-comp8-ext-back_harness.yaml	\
@@ -183,9 +176,9 @@ dist_yaml_TESTS =				\
 	yaml/fa-ir-g1-harness.yaml		\
 	yaml/fi_harness.yaml			\
 	yaml/foo.yaml				\
+	yaml/fr-bfu-comp6.yaml			\
 	yaml/fr-bfu-g2_harness.yaml		\
-	yaml/fr-fr-g1_backward.yaml		\
-	yaml/fr-fr-g1_harness.yaml		\
+	yaml/fr-fr-g1.yaml			\
 	yaml/ga-g1_harness.yaml			\
 	yaml/ga-g2_harness.yaml			\
 	yaml/hr-8dots_harness.yaml		\
@@ -193,35 +186,42 @@ dist_yaml_TESTS =				\
 	yaml/hu-hu-comp8_harness.yaml		\
 	yaml/hu-hu-g1_backward.yaml		\
 	yaml/hu-hu-g1_harness.yaml		\
+	yaml/issue-238.yaml			\
+	yaml/issue-401.yaml			\
+	yaml/issue-35.yaml			\
+	yaml/issue-384.yaml			\
+	yaml/issue-400.yaml			\
 	yaml/iu-ca-g1_harness.yaml		\
 	yaml/ko-2006-g2_harness.yaml		\
 	yaml/ko-g2_harness.yaml			\
 	yaml/letterDefTest_harness.yaml		\
 	yaml/lt_harness.yaml			\
+	yaml/lv_harness.yaml			\
 	yaml/mn-MN_harness.yaml			\
 	yaml/multipass-backward.yaml		\
 	yaml/multipass-forward.yaml		\
 	yaml/multipass.yaml			\
 	yaml/new_emph.yaml			\
-	yaml/nl-g0_harness.yaml			\
 	yaml/nl-NL-g0_harness.yaml		\
+	yaml/nl-g0_harness.yaml			\
 	yaml/no_8dot_harness.yaml		\
-	yaml/nocross_harness.yaml		\
 	yaml/no_g1_harness.yaml			\
 	yaml/no_g2_harness.yaml			\
 	yaml/no_harness.yaml			\
+	yaml/nocross_harness.yaml		\
 	yaml/noletsignafter.yaml		\
 	yaml/pl-pl-comp8_harness.yaml		\
+	yaml/sk-g1_harness.yaml			\
 	yaml/sr-g1_harness.yaml			\
+	yaml/syllable.yaml			\
 	yaml/ta-ta-g1_harness.yaml		\
 	yaml/vi-g1_backward.yaml		\
 	yaml/vi-g1_harness.yaml			\
-	yaml/zh-chn.yaml				\
-	yaml/issue-35.yaml				\
-	yaml/issue-238.yaml
+	yaml/zh-chn.yaml
 
 TEST_EXTENSIONS = .yaml
-YAML_LOG_COMPILER =  $(top_builddir)/tools/lou_checkyaml
+YAML_LOG_COMPILER =  $(WINE) $(top_builddir)/tools/lou_checkyaml$(EXEEXT)
+LOG_COMPILE = $(WINE)
 
 EXTRA_DIST = $(dist_yaml_TESTS)
 
@@ -238,3 +238,4 @@ AM_TESTS_ENVIRONMENT =								\
 	PYTHONPATH=$(top_builddir)/python:$$PYTHONPATH				\
 	LD_LIBRARY_PATH=$(top_builddir)/liblouis/.libs:$$LD_LIBRARY_PATH	\
 	PATH=$(top_builddir)/tools:$$PATH
+
