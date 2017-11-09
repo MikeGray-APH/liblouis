@@ -79,6 +79,7 @@ litdigit 9 24
 display ! 2346
 punctuation ! 235
 nofor postpunc ! 235
+match %a ! %a 56-235
 
 display " 5
 punctuation " 6-2356
@@ -111,6 +112,7 @@ display + 346
 math + 5-235
 display , 6
 punctuation , 2
+match %a , %a 56-2
 punctuation - 36
 hyphen - 36
 display . 46
@@ -122,10 +124,12 @@ math / 456-34
 display : 156
 punctuation : 25
 postpunc : 25
+match %a : %a 56-25
 #TODO:  this is unnecessarily necessary
 display ; 56
 punctuation ; 23
 noback punctuation ; 56
+match %a ; %a 56-23
 display < 126
 math < 4-126
 display = 123456
