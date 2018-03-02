@@ -22,7 +22,9 @@
 #  License along with liblouis. If not, see
 #  <http://www.gnu.org/licenses/>.
 
-include chardefs.cti All character definition opcodes
+#   had to be copied to nemethdefs.cti because
+#   some characters had to be redefined
+#include chardefs.cti All character definition opcodes
 include nemethdefs.cti
 
 # Braille indicators
@@ -90,10 +92,10 @@ replace \xf331
 replace \xf332
 
 #   fractions
-math \xf500 123456-1456
-math \xf501 123456-34
-math \xf502 123456-456-34
-math \xf503 123456-3456
+math \xf500 1456
+math \xf501 34
+math \xf502 456-34
+math \xf503 3456
 
 #   mixed fractions
 math \xf504 456-1456
