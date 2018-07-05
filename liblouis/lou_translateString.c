@@ -1012,6 +1012,8 @@ lou_translate(const char *tableList, const widechar *inbufx, int *inlen, widecha
 			spacing, outputPos, inputPos, cursorPos, mode, NULL, NULL);
 }
 
+int do_output = 1, do_output_rule = 1, do_output_marks = 1;
+
 int EXPORT_CALL
 _lou_translateWithTracing(const char *tableList, const widechar *inbufx, int *inlen,
 		widechar *outbuf, int *outlen, formtype *typeform, char *spacing, int *outputPos,
@@ -1062,6 +1064,21 @@ _lou_translateWithTracing(const char *tableList, const widechar *inbufx, int *in
 	_lou_logMessage(
 			LOG_ALL, "Performing translation: tableList=%s, inlen=%d", tableList, *inlen);
 	_lou_logWidecharBuf(LOG_ALL, "Inbuf=", inbufx, *inlen);
+
+	out_init();
+	//do_output = is_wchar_containing(inbufx, *inlen, "was");
+	if(do_output)
+	{
+		out_message("===========");
+		out_message(tableList);
+		out_message("-----------");
+		char buf[32] = {0};
+		snprintf(buf, 32, "[%d]", *inlen);
+		out_message(buf);
+		out_wchar(inbufx, *inlen);
+		out_wchar_hex(inbufx, *inlen);
+		//out_wchar_emphases(typeform, inbufx, *inlen);
+	}
 
 	table = lou_getTable(tableList);
 	if (table == NULL || *inlen < 0 || *outlen < 0) return 0;
@@ -1260,6 +1277,16 @@ _lou_translateWithTracing(const char *tableList, const widechar *inbufx, int *in
 	if (rulesLen != NULL) *rulesLen = appliedRulesCount;
 	_lou_logMessage(LOG_ALL, "Translation complete: outlen=%d", *outlen);
 	_lou_logWidecharBuf(LOG_ALL, "Outbuf=", (const widechar *)outbuf, *outlen);
+
+	if(do_output)
+	{
+		out_message("-----------");
+		char buf[32] = {0};
+		snprintf(buf, 32, "[%d]", *outlen);
+		out_message(buf);
+		out_wchar((const widechar*)outbuf, *outlen);
+		out_wchar_hex((const widechar*)outbuf, *outlen);
+	}
 
 	return goodTrans;
 }
@@ -2288,6 +2315,8 @@ putCharacter(widechar character, const TranslationTableHeader *table, int *src, 
 	//}
 	if (offset) {
 		rule = (TranslationTableRule *)&table->ruleArea[offset];
+		if(do_output_rule)
+			out_rule(rule, NULL);
 		if (rule->dotslen)
 			return for_updatePositions(&rule->charsdots[1], 1, rule->dotslen, 0, table,
 					src, dest, srcmax, destmax, mode, currentInput, currentOutput,
@@ -3645,6 +3674,15 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 	markEmphases(table, *srcmax, currentInput, typebuf, wordBuffer, emphasisBuffer,
 			transNoteBuffer, haveEmphasis, inputPositions, outputPositions,
 			cursorPosition, cursorStatus, compbrlStart, compbrlEnd);
+	if(do_output_marks)
+	{
+		if(typebuf)
+			out_typeforms(typebuf, srcmax);
+		out_emps_buffer(emphasisBuffer, srcmax + 1);
+		out_emps_buffer(transNoteBuffer, srcmax + 1);
+	}
+	if(do_output_rule)
+		out_message("-----------");
 
 	while (src < *srcmax) { /* the main translation loop */
 		TranslationTableCharacterAttributes beforeAttributes;
@@ -3669,6 +3707,14 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 						outputPositions, cursorPosition, cursorStatus, compbrlStart,
 						compbrlEnd))
 				goto failure;
+		
+			if(do_output_rule)
+			{
+				char ch[4];
+				ch[0] = (char)currentInput[src];
+				ch[1] = 0;
+				out_rule(NULL, ch);
+			}
 			src++;
 			/* because we don't call insertEmphasis */
 			pre_src = src;
@@ -3681,6 +3727,14 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 				*cursorPosition, &repwordStart, &repwordLength, dontContract,
 				compbrlStart, compbrlEnd, beforeAttributes, &curCharDef, &groupingRule,
 				&groupingOp);
+		
+		if(do_output_rule)
+		{
+			if(transOpcode == CTO_Contraction)
+			if(brailleIndicatorDefined(table->noContractSign))
+				out_rule(indicRule, "_nocontract");
+			out_rule(transRule, NULL);
+		}
 
 		if (transOpcode != CTO_Context)
 			if (appliedRules != NULL && appliedRulesCount < maxAppliedRules)

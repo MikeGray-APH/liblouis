@@ -159,6 +159,18 @@ _lou_backTranslateWithTracing(const char *tableList, const widechar *inbuf, int 
 	int maxAppliedRules;
 	int appliedRulesCount;
 	int k;
+	out_init();
+	if(do_output)
+	{
+		out_message("===========");
+		out_message(tableList);
+		out_message("-----------");
+		char buf[32] = {0};
+		snprintf(buf, 32, "[%d]", *inlen);
+		out_message(buf);
+		out_wchar(inbuf, *inlen);
+		out_wchar_hex(inbuf, *inlen);
+	}
 	int goodTrans = 1;
 	if (tableList == NULL || inbuf == NULL || inlen == NULL || outbuf == NULL ||
 			outlen == NULL)
@@ -219,6 +231,15 @@ _lou_backTranslateWithTracing(const char *tableList, const widechar *inbuf, int 
 	}
 	if (cursorPos != NULL) *cursorPos = cursorPosition;
 	if (rulesLen != NULL) *rulesLen = appliedRulesCount;
+	if(do_output)
+	{
+		out_message("-----------");
+		char buf[32] = {0};
+		snprintf(buf, 32, "[%d]", *outlen);
+		out_message(buf);
+		out_wchar((const widechar*)outbuf, *outlen);
+		out_wchar_hex((const widechar*)outbuf, *outlen);
+	}
 	return goodTrans;
 }
 
@@ -1038,6 +1059,8 @@ backTranslateString(const TranslationTableHeader *table, int *src, int srcmax, i
 	nextUpper = allUpper = allUpperPhrase = itsANumber = itsALetter = 0;
 	previousOpcode = CTO_None;
 	*src = *dest = 0;
+	if(do_output_rule)
+		out_message("-----------");
 	while (*src < srcmax) {
 		/* the main translation loop */
 		int currentDotslen; /* length of current find string */
@@ -1055,6 +1078,8 @@ backTranslateString(const TranslationTableHeader *table, int *src, int srcmax, i
 				itsANumber, itsALetter, &currentDotslen, &currentOpcode, &currentRule,
 				previousOpcode, &doingMultind, &multindRule, beforeAttributes, &passSrc,
 				&passInstructions, &passIC, &startMatch, &startReplace, &endReplace);
+		if(do_output_rule)
+			out_rule(currentRule, NULL);
 		if (appliedRules != NULL && *appliedRulesCount < maxAppliedRules)
 			appliedRules[(*appliedRulesCount)++] = currentRule;
 		/* processing before replacement */

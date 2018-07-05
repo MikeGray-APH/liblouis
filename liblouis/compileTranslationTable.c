@@ -4516,6 +4516,7 @@ compileFile(const char *fileName, CharacterClass **characterClasses,
 		short opcodeLengths[], TranslationTableOffset *newRuleOffset,
 		TranslationTableRule **newRule, RuleName **ruleNames,
 		TranslationTableHeader **table) {
+	out_message(fileName);
 	FileInfo nested;
 	fileCount++;
 	nested.fileName = fileName;
