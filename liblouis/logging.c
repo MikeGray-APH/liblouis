@@ -413,7 +413,7 @@ void out_rule(const TranslationTableRule *rule, const char *opcode)
 	if(opcode)
 		str = opcode;
 	else
-		str = findOpcodeName(rule->opcode);
+		str = _lou_findOpcodeName(rule->opcode);
 	fprintf(output, "%s", str);
 	if(strlen(str) < 8)
 		fputs("\t", output);
@@ -424,17 +424,17 @@ void out_rule(const TranslationTableRule *rule, const char *opcode)
 	case CTO_Pass3:
 	case CTO_Pass4:
 	
-		str = showDots(rule->charsdots, rule->charslen);
+		str = _lou_showDots(rule->charsdots, rule->charslen);
 		break;
 	
 	default:
 	
-		str = showString(rule->charsdots, rule->charslen);
+		str = _lou_showString(rule->charsdots, rule->charslen);
 		break;
 	}
 	fprintf(output, "\t%s", str);
 	
-	str = showDots(&rule->charsdots[rule->charslen], rule->dotslen);
+	str = _lou_showDots(&rule->charsdots[rule->charslen], rule->dotslen);
 	fprintf(output, "\t%s\n", str);
 }
 
