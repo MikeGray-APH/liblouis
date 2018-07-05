@@ -782,6 +782,20 @@ _lou_logMessage(logLevels level, const char *format, ...);
 
 extern int translation_direction;
 
+void out_init(void);
+int is_wchar_containing(const widechar *wbuf, int wlen, const char *sub);
+void out_message(const char *msg);
+void out_wchar(const widechar *wbuf, int wlen);
+void out_wchar_hex(const widechar *wbuf, const int wlen);
+void out_wchar_emphases(const formtype *typeform, const widechar *wbuf, int wlen);
+void out_wchar_containing(const widechar *wbuf, int wlen, const char *sub);
+void out_rule(const TranslationTableRule *rule, const char *opcode);
+void out_words(const int *buf, const int wlen);
+void out_emps_buffer(const int *buf, const int wlen);
+void out_typeforms(const formtype *buf, const int wlen);
+
+extern int do_output, do_output_rule, do_output_marks;
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

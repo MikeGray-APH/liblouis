@@ -3731,9 +3731,9 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 		
 		if(do_output_rule)
 		{
-			if(transOpcode == CTO_Contraction)
-			if(brailleIndicatorDefined(table->noContractSign))
-				out_rule(indicRule, "_nocontract");
+		//	if(transOpcode == CTO_Contraction)
+		//	if(brailleIndicatorDefined(table->noContractSign))
+		//		out_rule(indicRule, "_nocontract");
 			out_rule(transRule, NULL);
 		}
 
