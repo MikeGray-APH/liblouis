@@ -3759,6 +3759,13 @@ contraction blt
 contraction blvd
 contraction llc
 
+contraction .com
+contraction .org
+contraction .gov
+contraction .edu
+contraction .mil
+contraction .net
+
 # Shape symbols require a grade 1 indicator (Section 3.22.1)
 contraction \x25a0 ■ filled (solid) square
 contraction \x25a1 □ square
