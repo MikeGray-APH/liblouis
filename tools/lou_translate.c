@@ -32,6 +32,11 @@
 #include "unistr.h"
 #include "version-etc.h"
 
+/* needed to make debuggin easier */
+#ifdef DEBUG
+wchar_t wchar;
+#endif
+
 #define BUFSIZE MAXSTRING - 4
 
 static int forward_flag = 0;
