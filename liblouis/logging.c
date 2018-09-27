@@ -228,13 +228,8 @@ void out_wchar(const widechar *wbuf, int wlen)
 
 	if(!output)
 		return;
-
 	if(!wbuf)
-	{
-//		fprintf(output, ">><><<");
-//		fflush(output);
 		return;
-	}
 
 //	fprintf(output, ">> ");
 
@@ -270,7 +265,6 @@ void out_wchar_hex(const widechar *wbuf, const int wlen)
 
 	if(!output)
 		return;
-
 	if(!wbuf)
 		return;
 
@@ -288,6 +282,14 @@ void out_wchar_hex(const widechar *wbuf, const int wlen)
 static void out_emphasis(const formtype *typeform, int wlen, const formtype bit, const char emp, char *buf)
 {
 	int i;
+
+	if(!output)
+		return;
+	if(!typeform)
+		return;
+	if(!buf)
+		return;
+
 	char *p = buf;
 	for(i = 0; i < wlen; i++)
 	{
@@ -307,6 +309,10 @@ void out_wchar_emphases(const formtype *typeform, const widechar *wbuf, int wlen
 	int i, emps;
 
 	if(!output)
+		return;
+	if(!typeform)
+		return;
+	if(!wbuf)
 		return;
 
 	if(!typeform)
@@ -371,6 +377,8 @@ void out_wchar_containing(const widechar *wbuf, int wlen, const char *sub)
 	if(!output)
 		return;
 	if(!wbuf)
+		return;
+	if(!sub)
 		return;
 
 	int logBufSize = (wlen * 2);
@@ -448,6 +456,9 @@ void out_words(const int *buf, const int wlen)
 {
 	int i;
 
+	if(!output)
+		return 0;
+
 	//for(i = 0; i < wlen; i++)
 	//	fprintf(output, "%x ", buf[i]);
 	//fprintf(output, "\n");
@@ -473,6 +484,8 @@ void out_words(const int *buf, const int wlen)
 
 void out_emps_buffer(const int *buf, int wlen)
 {
+	if(!output)
+		return 0;
 	if(!buf)
 		return;
 
@@ -484,6 +497,8 @@ void out_emps_buffer(const int *buf, int wlen)
 
 void out_typeforms(const formtype *buf, int wlen)
 {
+	if(!output)
+		return 0;
 	if(!buf)
 		return;
 
