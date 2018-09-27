@@ -3754,9 +3754,17 @@ sufword preadmit 1234-1235-15-1-145-134-24-2345
 word rared 1235-1-1235-1246
 word firedrill 124-24-1235-15-145-1235-24-123-123
 
+contraction bldg
 contraction blt
 contraction blvd
 contraction llc
+
+contraction .com
+contraction .org
+contraction .gov
+contraction .edu
+contraction .mil
+contraction .net
 
 # Shape symbols require a grade 1 indicator (Section 3.22.1)
 contraction \x25a0 ■ filled (solid) square
