@@ -2948,7 +2948,7 @@ resolveEmphasisResets(unsigned int *buffer, const unsigned int bit_begin,
 	}
 }
 
-//static int capsOff;
+static int capsOff;
 
 static void
 markEmphases(const TranslationTableHeader *table, int srcmax,
@@ -2968,10 +2968,10 @@ markEmphases(const TranslationTableHeader *table, int srcmax,
 			last_caps = i;
 			caps_cnt = 0;
 		}
-/*
+
 		if(capsOff)
 		{
-			if(currentInput[src] == 0xe005)
+			if(currentInput[i] == 0xe010 || currentInput[i] == 0xe012)
 			{
 				capsOff = 0;
 				return;
@@ -2979,7 +2979,7 @@ markEmphases(const TranslationTableHeader *table, int srcmax,
 		}
 		else
 		{
-			if(currentInput[src] == 0xe004)
+			if(currentInput[i] == 0xe011 || currentInput[i] == 0xe013)
 			{
 				capsOff = 1;
 				caps_start = -1;
@@ -2990,7 +2990,6 @@ markEmphases(const TranslationTableHeader *table, int srcmax,
 		}
 
 		if(!capsOff)
-*/
 		if(checkAttr(currentInput[i], CTC_UpperCase, 0, table))
 		{
 			if(caps_start < 0)
@@ -3625,8 +3624,8 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 	translation_direction = 1;
 	markSyllables(table, *srcmax, currentInput, typebuf, &transOpcode, &transRule,
 			&transCharslen);
-//  capsOff = 0;
-  numericOff = 0;
+	capsOff = 0;
+	numericOff = 0;
 	numericMode = 0;
 	srcword = 0;
 	destword = 0; /* last word translated */
