@@ -3479,7 +3479,7 @@ checkNumericMode(const TranslationTableHeader *table, int *src, int *dest, int s
 
 	if(numericOff)
 	{
-		if(currentInput[*src] == 0xe003)
+		if(currentInput[*src] == 0xe005)
 		{
 			numericOff = 0;
 			return;
@@ -3487,7 +3487,7 @@ checkNumericMode(const TranslationTableHeader *table, int *src, int *dest, int s
 	}
 	else
 	{
-		if(currentInput[*src] == 0xe002)
+		if(currentInput[*src] == 0xe004)
 		{
 			numericOff = 1;
 			numericPassage = 0;
@@ -3497,7 +3497,7 @@ checkNumericMode(const TranslationTableHeader *table, int *src, int *dest, int s
 
 	if(!numericPassage)
 	{
-		if(currentInput[*src] == 0xe000)
+		if(currentInput[*src] == 0xe000 || currentInput[*src] == 0xe002)
 		{
 			numericPassage = 1;
 			*dontContract = 1;
@@ -3572,7 +3572,7 @@ checkNumericMode(const TranslationTableHeader *table, int *src, int *dest, int s
 	}
 	else
 	{
-		if(currentInput[*src] == 0xe001)
+		if(currentInput[*src] == 0xe001 || currentInput[*src] == 0xe003)
 		{
 			numericPassage = 0;
 			return;

@@ -43,17 +43,21 @@ noback context _$d["\x2810"]$d @5
 #   remove numeric space indicator
 noback correct _$d["\""]$d "\s"
 
-#   numeric passage
+#   numeric passage indicators
 math \xe000 3456-3456
 math \xe001 3456-3
 
-#   no numeric
+#   numeric passage no indicators
 replace \xe002
 replace \xe003
 
+#   no numeric
+replace \xe004
+replace \xe005
+
 #   no caps
-#replace \xe004
-#replace \xe005
+#replace \xe006
+#replace \xe007
 
 #   remove numeric indicator from numeric space indicator
 noback pass2 @245-5-3456-245 @245-5-245       0 0
