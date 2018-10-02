@@ -313,3 +313,7 @@ output.txt
 # stuff for local development
 local/
 local
+
+# output file
+liblouis-output.txt
+
