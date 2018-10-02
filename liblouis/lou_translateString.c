@@ -3677,9 +3677,9 @@ translateString(const TranslationTableHeader *table, int *dest, int *srcmax, int
 	if(do_output_marks)
 	{
 		if(typebuf)
-			out_typeforms(typebuf, srcmax);
-		out_emps_buffer(emphasisBuffer, srcmax + 1);
-		out_emps_buffer(transNoteBuffer, srcmax + 1);
+			out_typeforms(typebuf, *srcmax);
+		out_emps_buffer(emphasisBuffer, *srcmax + 1);
+		out_emps_buffer(transNoteBuffer, *srcmax + 1);
 	}
 	if(do_output_rule)
 		out_message("-----------");
