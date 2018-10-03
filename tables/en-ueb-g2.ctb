@@ -223,9 +223,11 @@ always of 12356
 #match [Rr] etro f =
 
 sufword aeroflot 1-12456-135-124-123-135-2345
+sufword aerofoil 1-12456-135-124-135-24-123
 sufword biofeedback 12-24-135-124-15-1246-12-1-14-13
 sufword chlorofluorocarbon 16-123-135-1235-135-124-123-136-135-1235-135-14-345-12-135-1345
 sufword chloroform 16-123-135-1235-135-123456-134
+sufword cofounder 14-135-124-46-145-12456
 sufword filofax 124-24-123-135-124-1-1346
 sufword hydrofoil 125-13456-145-1235-135-124-135-24-123
 sufword insofar 35-234-135-124-345
@@ -234,12 +236,16 @@ sufword microfilm 134-24-14-1235-135-124-24-123-134
 sufword microwave 134-24-14-1235-135-2456-1-1236-15
 sufword microwaved 134-24-14-1235-135-2456-1-1236-1246
 sufword microwaving 134-24-14-1235-135-2456-1-1236-346
+sufword photoflash 1234-125-135-2345-135-124-123-1-146
 sufword pianoforte 1234-24-1-1345-135-123456-2345-15
 sufword retrofit 1235-15-2345-1235-135-124-24-2345
+sufword retroflex 1235-15-2345-1235-135-124-123-15-1346
 sufword riboflavin 1235-24-12-135-124-123-1-1236-35
 sufword styrofoam 34-13456-1235-135-124-135-1-134
 sufword twofer 2345-2456-135-124-12456
 sufword twofold 2345-2456-135-124-135-123-145
+
+
 
 # the
 always the 2346
@@ -277,9 +283,13 @@ sufword prostheses 1234-1235-135-234-2346-234-15-234
 sufword prosthesis 1234-1235-135-234-2346-234-24-234
 sufword prosthetic 1234-1235-135-234-2346-2345-24-14
 sufword softhearted 234-12356-2345-125-15-345-2345-1246
+sufword sontheim 234-135-1345-2345-125-15-24-134
+sufword sontheimer 234-135-1345-2345-125-15-24-134-12456
 sufword southeast 234-1256-1456-2-34
+sufword southend 234-1256-1456-26-145
 sufword sweetheart 234-2456-15-15-2345-125-15-345-2345
 sufword thence 1456-56-15
+
 
 # with
 always with 23456
@@ -296,6 +306,8 @@ always ar 345
 match (%[^_~]%<*) ar (['’]([DSTdst]|ll|[rv]e|LL|[RV]E))?(%>*%[^_~]) =
 
 sufword aright 1-5-1235
+sufword flearidden 124-123-15-1-1235-24-145-145-26
+sufword indiarubber 35-145-24-1-1235-136-23-12456
 sufword infrared 35-124-1235-1-1235-1246
 sufword tearoom 2345-2-1235-135-135-134
 
@@ -351,6 +363,7 @@ match (%[^_~]%<*) gh ('([DSTdst]|ll|[rv]e|LL|[RV]E))?(%>*%[^_~]) =
 sufword bighearted 12-24-1245-125-15-345-2345-1246
 sufword bighorn 12-24-1245-125-135-1235-1345
 sufword bunghole 12-136-1345-1245-125-135-123-15
+sufword cunnyngham 14-136-1345-1345-13456-1345-1245-125-1-134
 sufword doghouse 145-135-1245-125-1256-234-15
 sufword foghorn 124-135-1245-125-135-1235-1345
 sufword pigheaded 1234-24-1245-125-2-145-1246
@@ -378,6 +391,8 @@ sufword vainglory 1236-1-35-1245-123-135-1235-13456
 always ou 1256
 #match (%[^_~]%<*) ou (['’]([DSTdst]|ll|[rv]e|LL|[RV]E))?(%>*%[^_~]) =
 
+sufword prounion 1234-1235-135-136-1345-24-135-1345
+
 # ow
 always ow 246
 
@@ -395,12 +410,14 @@ always sh 146
 match (%[^_~]%<*) sh (['’]([DSTdst]|ll|[rv]e|LL|[RV]E))?(%>*%[^_~]) =
 
 sufword asshole 1-234-234-125-135-123-15
+sufword deshabille 145-15-234-125-1-12-24-123-123-15
 sufword grasshopper 1245-1235-1-234-234-125-135-1234-1234-12456
 sufword hogshead 125-135-1245-234-125-2-145
 sufword mishandle 134-24-234-125-12346-123-15
 sufword mishandled 134-24-234-125-12346-123-1246
 sufword mishandling 134-24-234-125-12346-123-346
 sufword mishap 134-24-234-125-1-1234
+sufword mishear 134-24-234-125-15-345
 
 #TODO:  check pronunciation
 sufword chisholm 16-24-234-125-135-123-134
@@ -446,6 +463,7 @@ sufword adulthood 1-145-136-123-2345-125-135-135-145
 sufword anthill 1-1345-2345-125-24-123-123
 sufword bartholdi 12-345-2345-125-135-123-145-24
 sufword beethoven 12-15-15-2345-125-135-1236-26
+sufword carthorse 14-345-2345-125-135-1235-234-15
 sufword courthouse 14-1256-1235-2345-125-1256-234-15
 sufword foothill 124-135-135-2345-125-24-123-123
 sufword foothold 124-135-135-2345-125-135-123-145
@@ -477,6 +495,7 @@ sufword lufthansa 123-136-124-2345-125-1-1345-234-1
 always wh 156
 #match (%[^_~]%<*) wh (['’]([DSTdst]|ll|[rv]e|LL|[RV]E))?(%>*%[^_~]) =
 
+sufword newhaven 1345-15-2456-125-1-1236-26
 sufword rawhide 1235-1-2456-125-24-145-15
 sufword sawhorse 234-1-2456-125-135-1235-234-15
 
@@ -565,6 +584,9 @@ sufword bethesda 23-2346-234-145-1
 #   be[cfhlnsty] are handled in 10.9.5
 word beg =
 
+sufword   bein'   23-24-1345-3
+always    betws   12-15-2345-2456-234
+
 #   easier if after "be" cause both are dots 23
 # bb   10.6.5   10.6.6
 empmatchbefore empmatchafter match %a bb %a 23
@@ -606,6 +628,8 @@ empmatchafter match %[^_~]%<* dis [Pp]![Ii] 256
 empmatchafter match %[^_~]%<* dis [ABDEFGIJLMNOQRSTUVWXYZabdefgijlmnoqrstuvwxyz] 256
 
 nofor begword dis 256
+
+word disulphide 145-24-234-136-123-1234-125-24-145-15
 
 # ea   10.6.5   10.6.6   10.6.7
 empmatchbefore empmatchafter match %a ea %a 2
@@ -700,6 +724,9 @@ always character 5-16
 # day
 always day 5-145
 
+sufword   dayan   145-1-13456-1-1345
+sufword   whaddaya   156-1-145-145-1-13456-1
+
 # ever   10.7.4
 always ever 5-15
 
@@ -759,6 +786,8 @@ sufword severus 234-15-1236-12456-136-234
 
 sufword  severed  234-5-15-1246
 
+endword  keever 13-15-15-1236-12456   McKeever?
+
 # father
 always father 5-124
 
@@ -775,6 +804,7 @@ sufword menhaden 134-26-125-1-145-26
 always here 5-125
 
 sufword adhered 1-145-125-12456-1246
+sufword adherer 1-145-125-12456-12456
 sufword adherence 1-145-125-12456-56-15
 sufword adherent 1-145-125-12456-26-2345
 sufword ciphered 14-24-1234-125-12456-1246
@@ -1010,6 +1040,8 @@ always word 45-2456
 # work
 always work 5-2456
 
+sufword   dworkin   145-2456-135-1235-13-35
+
 # world
 always world 456-2456
 
@@ -1045,6 +1077,9 @@ word fruity 124-1235-136-24-2345-13456
 word hoity-toity 124-135-24-2345-13456-36-2345-135-24-2345-13456
 word rabbity 1235-1-23-24-2345-13456
 word pityard 1234-24-2345-13456-345-145
+
+sufword antitype 1-1345-2345-24-2345-13456-1234-15
+sufword captainess 14-1-1234-2345-1-24-35-15-234-234
 
 # less
 match %a less - 46-234
@@ -3765,6 +3800,13 @@ contraction .gov
 contraction .edu
 contraction .mil
 contraction .net
+
+word   somesch 234-135-134-15-234-14-125
+
+contraction blcup
+contraction grtsamada
+#contraction dobrljin
+#contraction ozbrl
 
 # Shape symbols require a grade 1 indicator (Section 3.22.1)
 contraction \x25a0 ■ filled (solid) square
