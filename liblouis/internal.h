@@ -323,6 +323,8 @@ typedef enum { /* Op codes */
 	CTO_JoinableWord,
 	CTO_LowWord,
 	CTO_Contraction,
+	CTO_Grade1Symbol,
+	CTO_Grade1Word,
 	CTO_SuffixableWord, /** whole word or beginning of word */
 	CTO_PrefixableWord, /** whole word or end of word */
 	CTO_BegWord,		/** beginning of word only */
