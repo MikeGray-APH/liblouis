@@ -1670,7 +1670,7 @@ insertBrailleIndicators(int finish, const TranslationTableHeader *table, int *sr
 				checkWhat = checkNothing;
 				break;
 			}
-			if (transOpcode == CTO_Contraction) {
+			if (transOpcode == CTO_Contraction || transOpcode == CTO_Grade1Symbol || transOpcode == CTO_Grade1Word) {
 				ok = 1;
 				checkWhat = checkNothing;
 				break;
@@ -2072,6 +2072,8 @@ for_selectRule(const TranslationTableHeader *table, int src, int dest, int srcma
 									0, src, emphasisBuffer, transNoteBuffer, *transRule))
 							break;
 					case CTO_Contraction:
+					case CTO_Grade1Symbol:
+					case CTO_Grade1Word:
 						if (table->usesSequences) {
 							if (inSequence(table, src, srcmax, currentInput, *transRule))
 								return;
@@ -3315,14 +3317,22 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int *src, in
 	/* simple case */
 	if (!haveEmphasis) {
 		/* insert graded 1 mode indicator */
-		if (transOpcode == CTO_Contraction) {
+		if (transOpcode == CTO_Contraction || transOpcode == CTO_Grade1Symbol || transOpcode == CTO_Grade1Word) {
 			const TranslationTableRule *indicRule;
-			if (brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+			if(brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+			{
 				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0,
 						table, src, dest, srcmax, destmax, mode, currentInput,
 						currentOutput, srcMapping, prevSrcMapping, emphasisBuffer,
 						transNoteBuffer, transRule, inputPositions, outputPositions,
 						cursorPosition, cursorStatus, compbrlStart, compbrlEnd);
+				if(transOpcode == CTO_Grade1Word)
+					for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0,
+							table, src, dest, srcmax, destmax, mode, currentInput,
+							currentOutput, srcMapping, prevSrcMapping, emphasisBuffer,
+							transNoteBuffer, transRule, inputPositions, outputPositions,
+							cursorPosition, cursorStatus, compbrlStart, compbrlEnd);
+			}
 		}
 
 		if (emphasisBuffer[at] & CAPS_EMPHASIS) {
@@ -3448,14 +3458,22 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int *src, in
 					compbrlEnd);
 
 	/* insert graded 1 mode indicator */
-	if (transOpcode == CTO_Contraction) {
+	if (transOpcode == CTO_Contraction || transOpcode == CTO_Grade1Symbol || transOpcode == CTO_Grade1Word) {
 		const TranslationTableRule *indicRule;
-		if (brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+		if(brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+		{
 			for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0, table,
 					src, dest, srcmax, destmax, mode, currentInput, currentOutput,
 					srcMapping, prevSrcMapping, emphasisBuffer, transNoteBuffer,
 					transRule, inputPositions, outputPositions, cursorPosition,
 					cursorStatus, compbrlStart, compbrlEnd);
+			if(transOpcode == CTO_Grade1Word)
+				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0, table,
+						src, dest, srcmax, destmax, mode, currentInput, currentOutput,
+						srcMapping, prevSrcMapping, emphasisBuffer, transNoteBuffer,
+						transRule, inputPositions, outputPositions, cursorPosition,
+						cursorStatus, compbrlStart, compbrlEnd);
+		}
 	}
 
 	/* insert capitalization last so it will be closest to word */

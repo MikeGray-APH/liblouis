@@ -376,10 +376,8 @@ tests:
 
 - - Dobrljin
   - ;;,dobrljin
-  - xfail: true
 - - ozbrl
   - ;;ozbrl
-  - xfail: true
 
 #   Appendix 1.2
 

@@ -3803,10 +3803,10 @@ contraction .net
 
 word   somesch 234-135-134-15-234-14-125
 
-contraction blcup
-contraction grtsamada
-#contraction dobrljin
-#contraction ozbrl
+grade1symbol blcup
+grade1symbol grtsamada
+grade1word dobrljin
+grade1word ozbrl
 
 # Shape symbols require a grade 1 indicator (Section 3.22.1)
 contraction \x25a0 ■ filled (solid) square
