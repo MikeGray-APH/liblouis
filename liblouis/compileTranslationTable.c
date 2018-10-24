@@ -134,7 +134,7 @@ static const char *opcodeNames[CTO_None] = {
 	"lowercase", "grouping", "uplow", "litdigit", "display", "replace", "context",
 	"correct", "pass2", "pass3", "pass4", "repeated", "repword", "capsnocont", "always",
 	"exactdots", "nocross", "syllable", "nocont", "compbrl", "literal", "largesign",
-	"word", "partword", "joinnum", "joinword", "lowword", "contraction", "sufword",
+	"word", "partword", "joinnum", "joinword", "lowword", "contraction", "grade1symbol", "grade1word", "sufword",
 	"prfword", "begword", "begmidword", "midword", "midendword", "endword", "prepunc",
 	"postpunc", "begnum", "midnum", "endnum", "decpoint", "hyphen",
 	// "apostrophe",
@@ -3318,6 +3318,8 @@ doOpcode:
 			ok = 0;
 		break;
 	case CTO_Contraction:
+	case CTO_Grade1Symbol:
+	case CTO_Grade1Word:
 	case CTO_NoCont:
 	case CTO_CompBrl:
 	case CTO_Literal:

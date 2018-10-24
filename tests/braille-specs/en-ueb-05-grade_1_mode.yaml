@@ -142,7 +142,6 @@ tests:
   - ;,,nec "<,na;nal ,executive ,committee">
 - - ozbrl (Australian listserve)
   - ;;ozbrl "<,au/ralian li/s}ve">
-  - xfail: true
 
 # 5.8.1
 
