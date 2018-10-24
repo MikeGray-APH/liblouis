@@ -3115,10 +3115,19 @@ beginCount(const EmphasisInfo *buffer, const int at, const EmphasisClass class,
 	return 0;
 }
 
+/*   no ending indicators after no_translation   */
+static int
+isPrvNoTranslate(const int at, formtype *typebuf)
+{
+	if(at == 0)
+		return 0;
+	return typebuf[at - 1] & no_translate;
+}
+
 static void
 insertEmphasesAt(const int at, const TranslationTableHeader *table, int pos,
 		const InString *input, OutString *output, int *posMapping,
-		const EmphasisInfo *emphasisBuffer, int haveEmphasis, int transOpcode,
+		const EmphasisInfo *emphasisBuffer, int haveEmphasis, formtype *typebuf, int transOpcode,
 		int *cursorPosition, int *cursorStatus) {
 	int type_counts[10];
 	int i, j, min, max;
@@ -3141,6 +3150,7 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int pos,
 		if ((emphasisBuffer[at].begin | emphasisBuffer[at].end | emphasisBuffer[at].word |
 					emphasisBuffer[at].symbol) &
 				capsEmphClass) {
+			if(!isPrvNoTranslate(at, typebuf))
 			insertEmphasisEnd(emphasisBuffer, at, capsRule, capsEmphClass, table, pos,
 					input, output, posMapping, cursorPosition, cursorStatus);
 			insertEmphasisBegin(emphasisBuffer, at, capsRule, capsEmphClass, table, pos,
@@ -3160,6 +3170,7 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int pos,
 	if ((emphasisBuffer[at].begin | emphasisBuffer[at].end | emphasisBuffer[at].word |
 				emphasisBuffer[at].symbol) &
 			capsEmphClass)
+	if(!isPrvNoTranslate(at, typebuf))
 		insertEmphasisEnd(emphasisBuffer, at, capsRule, capsEmphClass, table, pos, input,
 				output, posMapping, cursorPosition, cursorStatus);
 
@@ -3174,6 +3185,8 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int pos,
 				if (min < 0 || type_counts[j] < type_counts[min]) min = j;
 		if (min < 0) break;
 		type_counts[min] = 0;
+		if(isPrvNoTranslate(at, typebuf))
+			continue;
 		insertEmphasisEnd(emphasisBuffer, at, emph1Rule + min, emphClasses[min], table,
 				pos, input, output, posMapping, cursorPosition, cursorStatus);
 	}
@@ -3227,13 +3240,13 @@ insertEmphasesAt(const int at, const TranslationTableHeader *table, int pos,
 static void
 insertEmphases(const TranslationTableHeader *table, int pos, const InString *input,
 		OutString *output, int *posMapping, const EmphasisInfo *emphasisBuffer,
-		int haveEmphasis, int transOpcode, int *cursorPosition, int *cursorStatus,
+		int haveEmphasis, formtype *typebuf, int transOpcode, int *cursorPosition, int *cursorStatus,
 		int *pre_src) {
 	int at;
 
 	for (at = *pre_src; at <= pos; at++)
 		insertEmphasesAt(at, table, pos, input, output, posMapping, emphasisBuffer,
-				haveEmphasis, transOpcode, cursorPosition, cursorStatus);
+				haveEmphasis, typebuf, transOpcode, cursorPosition, cursorStatus);
 
 	*pre_src = pos + 1;
 }
@@ -3400,7 +3413,7 @@ translateString(const TranslationTableHeader *table, int mode, int currentPass,
 		//			&indicRule->charsdots[0], 0, indicRule->dotslen, 0))
 		//			goto failure;
 		insertEmphases(table, pos, input, output, posMapping, emphasisBuffer,
-				haveEmphasis, transOpcode, cursorPosition, cursorStatus, &pre_src);
+				haveEmphasis, typebuf, transOpcode, cursorPosition, cursorStatus, &pre_src);
 		if (table->usesNumericMode)
 			checkNumericMode(table, pos, input, output, posMapping, cursorPosition,
 					cursorStatus, &dontContract, &numericMode);
@@ -3609,7 +3622,7 @@ translateString(const TranslationTableHeader *table, int mode, int currentPass,
 
 	transOpcode = CTO_Space;
 	insertEmphases(table, pos, input, output, posMapping, emphasisBuffer, haveEmphasis,
-			transOpcode, cursorPosition, cursorStatus, &pre_src);
+			typebuf, transOpcode, cursorPosition, cursorStatus, &pre_src);
 
 failure:
 	if (destword != 0 && pos < input->length &&
