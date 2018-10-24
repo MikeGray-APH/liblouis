@@ -190,7 +190,7 @@ tests:
   - - "-123-Abc .123.Abc"
     - "-#abc-,abc #.abc.,abc"
   - - "abc-123 abc.123"
-    - "abc-#abc abc#.abc" # was this really intended?
+    - "abc-#abc abc.#abc" # was this really intended? maybe not
 
 flags: {testmode: backward}
 tests:

@@ -63,6 +63,26 @@ noback context _$d["\s"]$d @5
 #   remove numeric space indicator
 noback correct _$d["\""]$d "\s"
 
+#   numeric control characters
+# passage with indicators
+math \xe000 3456-3456
+math \xe001 3456-3
+# passage with no indicators
+replace \xe002
+replace \xe003
+# no numeric mode
+replace \xe004
+replace \xe005
+
+#   capital control characters
+# passage with indicators
+space \xe010 6-6-6
+space \xe011 6-3
+# passage with no indicators
+replace \xe012
+replace \xe013
+
+
 #   remove numeric indicator from numeric space indicator
 noback pass2 @245-5-3456-245 @245-5-245       0 0
 noback pass2 @245-5-3456-1 @245-5-1           0 1

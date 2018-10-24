@@ -2896,6 +2896,8 @@ resolveEmphasisResets(EmphasisInfo *buffer, const EmphasisClass class,
 	}
 }
 
+static int capsOff;
+
 static void
 markEmphases(const TranslationTableHeader *table, const InString *input,
 		formtype *typebuf, unsigned int *wordBuffer, EmphasisInfo *emphasisBuffer,
@@ -2918,13 +2920,16 @@ markEmphases(const TranslationTableHeader *table, const InString *input,
 			caps_cnt = 0;
 		}
 
-		if (checkAttr(input->chars[i], CTC_UpperCase, 0, table)) {
-			if (caps_start < 0) caps_start = i;
-			caps_cnt++;
-		} else if (caps_start >= 0) {
-			/* caps should keep going until this */
-			if (checkAttr(input->chars[i], CTC_Letter, 0, table) &&
-					checkAttr(input->chars[i], CTC_LowerCase, 0, table)) {
+		if(capsOff)
+		{
+			if(input->chars[i] == 0xe011 || input->chars[i] == 0xe013)
+				capsOff = 0;
+		}
+		else
+		{
+			if(input->chars[i] == 0xe010 || input->chars[i] == 0xe012)
+			{
+				capsOff = 1;
 				emphasisBuffer[caps_start].begin |= capsEmphClass;
 				if (caps_cnt > 0)
 					emphasisBuffer[i].end |= capsEmphClass;
@@ -2933,6 +2938,27 @@ markEmphases(const TranslationTableHeader *table, const InString *input,
 				caps_start = -1;
 				last_caps = -1;
 				caps_cnt = 0;
+			}
+		}
+
+		if(!capsOff)
+		{
+			if (checkAttr(input->chars[i], CTC_UpperCase, 0, table)) {
+				if (caps_start < 0) caps_start = i;
+				caps_cnt++;
+			} else if (caps_start >= 0) {
+				/* caps should keep going until this */
+				if (checkAttr(input->chars[i], CTC_Letter, 0, table) &&
+						checkAttr(input->chars[i], CTC_LowerCase, 0, table)) {
+					emphasisBuffer[caps_start].begin |= capsEmphClass;
+					if (caps_cnt > 0)
+						emphasisBuffer[i].end |= capsEmphClass;
+					else
+						emphasisBuffer[last_caps].end |= capsEmphClass;
+					caps_start = -1;
+					last_caps = -1;
+					caps_cnt = 0;
+				}
 			}
 		}
 
@@ -3251,6 +3277,8 @@ insertEmphases(const TranslationTableHeader *table, int pos, const InString *inp
 	*pre_src = pos + 1;
 }
 
+static int numericPassage, numericOff;
+
 static void
 checkNumericMode(const TranslationTableHeader *table, int pos, const InString *input,
 		OutString *output, int *posMapping, int *cursorPosition, int *cursorStatus,
@@ -3259,39 +3287,103 @@ checkNumericMode(const TranslationTableHeader *table, int pos, const InString *i
 	const TranslationTableRule *indicRule;
 	if (!brailleIndicatorDefined(table->numberSign, table, &indicRule)) return;
 
-	/* not in numeric mode */
-	if (!*numericMode) {
-		if (checkAttr(input->chars[pos], CTC_Digit | CTC_LitDigit, 0, table)) {
-			*numericMode = 1;
-			*dontContract = 1;
-			for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0, pos,
-					input, output, posMapping, cursorPosition, cursorStatus);
-		} else if (checkAttr(input->chars[pos], CTC_NumericMode, 0, table)) {
-			for (i = pos + 1; i < input->length; i++) {
-				if (checkAttr(input->chars[i], CTC_Digit | CTC_LitDigit, 0, table)) {
-					*numericMode = 1;
-					for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen,
-							0, pos, input, output, posMapping, cursorPosition,
-							cursorStatus);
-					break;
-				} else if (!checkAttr(input->chars[i], CTC_NumericMode, 0, table))
-					break;
-			}
+	if(numericOff)
+	{
+		if(input->chars[pos] == 0xe005)
+			numericOff = 0;
+		return;
+	}
+	else
+	{
+		if(input->chars[pos] == 0xe004)
+		{
+			numericOff = 1;
+			numericPassage = 0;
+			return;
 		}
 	}
 
-	/* in numeric mode */
-	else {
-		if (!checkAttr(input->chars[pos],
-					CTC_Digit | CTC_LitDigit | CTC_NumericMode | CTC_MidEndNumericMode, 0,
-					table)) {
-			*numericMode = 0;
-			if (brailleIndicatorDefined(table->noContractSign, table, &indicRule))
-				if (checkAttr(input->chars[pos], CTC_NumericNoContract, 0, table))
-					for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen,
-							0, pos, input, output, posMapping, cursorPosition,
-							cursorStatus);
+	if(!numericPassage)
+	{
+		if(input->chars[pos] == 0xe000 || input->chars[pos] == 0xe002)
+		{
+			numericPassage = 1;
+			*dontContract = 1;
 		}
+
+		/* not in numeric mode */
+		if (!*numericMode) {
+			if (checkAttr(input->chars[pos], CTC_Digit | CTC_LitDigit, 0, table)) {
+				*numericMode = 1;
+				*dontContract = 1;
+				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen, 0, pos,
+						input, output, posMapping, cursorPosition, cursorStatus);
+			} else if (checkAttr(input->chars[pos], CTC_NumericMode, 0, table)) {
+				for(i = pos - 1; i >= 0; i--)
+				{
+					if(checkAttr(input->chars[i], CTC_SeqBefore, 0, table))
+						continue;
+					if(!checkAttr(input->chars[i], CTC_Space | CTC_SeqDelimiter, 0, table))
+						break;
+					else
+					{
+						i = -1;
+						break;
+					}
+				}
+				if(i == -1)
+				for(i = pos - 1; i >= 0; i--)
+				{
+					if(checkAttr(input->chars[i], CTC_SeqBefore, 0, table))
+						continue;
+					if(!checkAttr(input->chars[i], CTC_Space | CTC_SeqDelimiter, 0, table))
+						break;
+					else
+					{
+						i = -1;
+						break;
+					}
+				}
+				if(i == -1)
+				for (i = pos + 1; i < input->length; i++) {
+					if (checkAttr(input->chars[i], CTC_Digit | CTC_LitDigit, 0, table)) {
+						*numericMode = 1;
+						for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen,
+								0, pos, input, output, posMapping, cursorPosition,
+								cursorStatus);
+						break;
+					} else if (!checkAttr(input->chars[i], CTC_NumericMode, 0, table))
+						break;
+				}
+			}
+		}
+
+		/* in numeric mode */
+		else {
+			if (!checkAttr(input->chars[pos],
+						CTC_Digit | CTC_LitDigit | CTC_NumericMode | CTC_MidEndNumericMode, 0,
+						table)) {
+				*numericMode = 0;
+				if (brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+					if (checkAttr(input->chars[pos], CTC_NumericNoContract, 0, table))
+						for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen,
+								0, pos, input, output, posMapping, cursorPosition,
+								cursorStatus);
+			}
+		}
+	}
+	else
+	{
+		if(input->chars[pos] == 0xe001 || input->chars[pos] == 0xe003)
+		{
+			numericPassage = 0;
+			return;
+		}
+		if(brailleIndicatorDefined(table->noContractSign, table, &indicRule))
+		if(checkAttr(input->chars[pos], CTC_NumericNoContract, 0, table))
+				for_updatePositions(&indicRule->charsdots[0], 0, indicRule->dotslen,
+								0, pos, input, output, posMapping, cursorPosition,
+								cursorStatus);
 	}
 }
 
@@ -3331,6 +3423,9 @@ translateString(const TranslationTableHeader *table, int mode, int currentPass,
 	translation_direction = 1;
 	markSyllables(table, input, typebuf, &transOpcode, &transRule, &transCharslen);
 	numericMode = 0;
+	numericPassage = 0;
+	capsOff = 0;
+	numericOff = 0;
 	srcword = 0;
 	destword = 0; /* last word translated */
 	dontContract = 0;
