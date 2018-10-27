@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <getopt.h>
 #include "liblouis.h"
 #include "internal.h"
@@ -36,8 +37,6 @@
 #ifdef DEBUG
 wchar_t wchar;
 #endif
-
-#define BUFSIZE MAXSTRING - 4
 
 static int forward_flag = 0;
 static int backward_flag = 0;
@@ -57,20 +56,20 @@ const char version_etc_copyright[] =
 
 static void
 translate_input(int forward_translation, char *table_name) {
-	char charbuf[BUFSIZE];
-	char *outputbuf;
+	char charbuf[MAXSTRING];
+	uint8_t *outputbuf;
 	size_t outlen;
-	widechar inbuf[BUFSIZE];
-	widechar transbuf[BUFSIZE];
+	widechar inbuf[MAXSTRING];
+	widechar transbuf[MAXSTRING];
 	int inlen;
 	int translen;
 	int k;
 	int ch = 0;
 	int result;
 	while (1) {
-		translen = BUFSIZE;
+		translen = MAXSTRING;
 		k = 0;
-		while ((ch = fgetc(input)) != '\n' && ch != EOF && k < BUFSIZE - 1)
+		while ((ch = fgetc(input)) != '\n' && ch != EOF && k < MAXSTRING - 1)
 			charbuf[k++] = ch;
 		if (ch == EOF && k == 0) break;
 		charbuf[k] = 0;

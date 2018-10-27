@@ -58,7 +58,7 @@ endemph underline 56-35
 begemph script 56-35
 endemph script 56-35
 
-#Multiple character definitions
+# Multiple character definitions
 
 always        \x002F\x002F  6-26-2
 always        \x005C\x005C  5-35-3

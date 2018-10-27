@@ -1,5 +1,25 @@
 # liblouis: Unified English Braille Code (Grade 1)
 #
+# -----------
+#-name: Unified English braille, grade 1
+#-display-name: English (UEB) uncontracted braille
+#
+#+locale:en
+#+type:literary
+#+contraction:no
+#+grade:1
+#+system:ueb
+#
+# TODO: Please correct the metadata above. It is not meant to be
+# accurate nor complete. It hasn't been verified by the table
+# author yet. It is merely an attempt by the liblouis maintainers
+# to get some sensible initial values in place.
+#
+# TODO: Please add a reference to official documentation about
+# the implemented braille code. Preferably submit the documents
+# to https://github.com/liblouis/braille-specs.
+# -----------
+#
 #  Copyright (C) 2004-2008 ViewPlus Technologies, Inc. www.viewplus.com
 #  Copyright (C) 2004-2006 JJB Software, Inc. www.jjb-software.com
 #  Copyright (C) 2016 American Printing House for the Blind, Inc. www.aph.org
@@ -32,6 +52,8 @@ include en-ueb-chardefs.uti UEB specific char defs.
 
 math \x2810 5
 
+math \x2810 5  numeric space
+
 numsign 3456  number sign, just a dots operand
 numericmodechars .,\x2810
 nocontractsign 56
@@ -43,25 +65,25 @@ noback context _$d["\x2810"]$d @5
 #   remove numeric space indicator
 noback correct _$d["\""]$d "\s"
 
-#   numeric passage indicators
+#   numeric control characters
+# passage with indicators
 math \xe000 3456-3456
 math \xe001 3456-3
-
-#   numeric passage no indicators
+# passage with no indicators
 replace \xe002
 replace \xe003
-
-#   no numeric
+# no numeric mode
 replace \xe004
 replace \xe005
 
-#   capital passage indicators
+#   capital control characters
+# passage with indicators
 space \xe010 6-6-6
 space \xe011 6-3
-
-#   capital passage no indicators
+# passage with no indicators
 replace \xe012
 replace \xe013
+
 
 #   remove numeric indicator from numeric space indicator
 noback pass2 @245-5-3456-245 @245-5-245       0 0

@@ -21,4 +21,4 @@
 # Spanish US computer Braille.
 # Like the es-us-g1.ctb file this file is purely to allow us to define the differences from proper Spanish without messing up those tables.
 
-include Es-Es-g0.utb
+include Es-Es-G0.utb

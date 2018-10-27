@@ -32,7 +32,7 @@ space \x000a 0 newline
 space \x000c 0
 space \x000d 0 carriage return
 space \x001b 1b escape character for html back-translation
-space \x00A0 a NO-BREAK SPACE <noBreak> 0020 NON-BREAKING SPACE 
+space \x00A0 a NO-BREAK SPACE <noBreak> 0020 NON-BREAKING SPACE
 
 include latinLetterDef8Dots.uti
 
@@ -266,13 +266,7 @@ uplow \x00cf\x00ef 45-25-24 Ïï
 uplow \x00d6\x00f6 45-25-135 Öö
 uplow \x00dc\x00fc 45-25-136 Üü
 uplow \x0178\x00ff 45-25-13456 Ÿÿ
-uplow \x0401\x0451 45-25-15 Ёё   cyrillic io
-uplow \x0407\x0457 45-25-24 Її   cyrillic yi
-uplow \x04d2\x04d3 45-25-1 Ӓӓ   cyrillic a
-uplow \x04f0\x04f1 45-25-13456 Ӱӱ   cyrillic u
-uplow \x1e26\x1e27 45-25-125 Ḧḧ
-uplow \x1e84\x1e85 45-25-2456 Ẅẅ
-uplow \x1e8c\x1e8d 45-25-1346 Ẍẍ
+uplow \x00de\x00fe 3456-2346 Þþ
 
 uplow \x00c1\x00e1 45-34-1 Áá
 uplow \x00c9\x00e9 45-34-15 Éé
@@ -283,31 +277,70 @@ uplow \x0143\x0144 45-34-1345 Ńń
 uplow \x0154\x0155 45-34-1235 Ŕŕ
 uplow \x015a\x015b 45-34-234 Śś
 uplow \x0179\x017a 45-34-1356 Źź
-uplow \x01f4\x01f5 45-34-1245 Ǵǵ
-uplow \x040c\x045c 45-34-13 Ќќ   cyrillic kje
-uplow \x1e30\x1e31 45-34-13 Ḱḱ
-uplow \x1e3e\x1e3f 45-34-134 Ḿḿ
-uplow \x1e54\x1e55 45-34-1234 Ṕṕ
-uplow \x1e54\x1e55 45-34-2456 Ẃẃ
-
-uplow \x010c\x010d 45-346-14 Čč
-uplow \x010e\x010f 45-346-145 Ďď
-uplow \x011a\x011b 45-346-15 Ěě
-uplow \x013d\x013e 45-346-123 Ľľ
-uplow \x0147\x0148 45-346-1345 Ňň
-uplow \x0158\x0159 45-346-1235 Řř
-uplow \x0160\x0161 45-346-234 Šš
-uplow \x0164\x0165 45-346-2345 Ťť
 uplow \x017d\x017e 45-346-1356 Žž
+uplow \x0197\x0268 4-25-24 Ɨɨ   stroke
+uplow \x01b5\x01b6 4-25-1356 Ƶƶ   stroke
 uplow \x01cd\x01ce 45-346-1 Ǎǎ
 uplow \x01cf\x01d0 45-346-123 Ǐǐ
 uplow \x01d1\x01d2 45-346-135 Ǒǒ
 uplow \x01d3\x01d4 45-346-136 Ǔǔ
+uplow \x01e4\x01e5 4-25-1245 Ǥǥ   stroke
 uplow \x01e6\x01e7 45-346-1245 Ǧǧ
 uplow \x01e8\x01e9 45-346-13 Ǩǩ
+uplow \x01f4\x01f5 45-34-1245 Ǵǵ
+uplow \x01f8\x01f9 45-16-1345 Ǹǹ
+
 uplow \x021e\x021f 45-346-125 Ȟȟ
+uplow \x0228\x0229 45-12346-15 Ȩȩ
+uplow \x0232\x0233 4-36-13456 Ȳȳ
+uplow \x023a\x2c65 4-16-1 Ⱥⱥ   stroke
+uplow \x023b\x023c 4-16-14 Ȼȼ   stroke
+uplow \x023e\x2c66 4-16-2345 Ⱦⱦ   diagonal stroke
+uplow \x0243\x0180 4-25-12 Ƀƀ   stroke
+uplow \x0246\x0247 4-16-15 Ɇɇ   stroke
+uplow \x0248\x0249 4-25-245 Ɉɉ   stroke
+uplow \x024c\x024d 4-25-15 Ɍɍ   stroke
+uplow \x024e\x024f 4-25-13456 Ɏɏ   stroke
+
+uplow \x0400\x0450 45-16-15 Ѐѐ   cyrillic ie
+uplow \x0401\x0451 45-25-15 Ёё   cyrillic io
+uplow \x0407\x0457 45-25-24 Її   cyrillic yi
+uplow \x040c\x045c 45-34-13 Ќќ   cyrillic kje
 uplow \x040e\x04e5 45-346-13456 Ўў   cyrillic short u
+uplow \x04aa\x04ab 45-12346-14 Ҫҫ
+uplow \x04b0\x04b1 4-25-13456 Ұұ   stroke   cyrillic straight u
+uplow \x04d0\x04d1 4-346-1 Ӑӑ
+uplow \x04d2\x04d3 45-25-1 Ӓӓ   cyrillic a
 uplow \x04d6\x04d7 45-346-15 Ӗӗ   cyrillic ie
+uplow \x04d8\x04d9 456-26 Әә   cyrillic schwa
+uplow \x04ee\x04ef 4-36-13456 Ӯӯ   cyrillic u
+uplow \x04f0\x04f1 45-25-13456 Ӱӱ   cyrillic u
+
+uplow \x1e20\x1e21 4-36-1245 Ḡḡ
+uplow \x1e26\x1e27 45-25-125 Ḧḧ
+uplow \x1e30\x1e31 45-34-13 Ḱḱ
+uplow \x1e3e\x1e3f 45-34-134 Ḿḿ
+uplow \x1e54\x1e55 45-34-1234 Ṕṕ
+uplow \x1e7c\x1e7d 45-12456-1236 Ṽṽ
+uplow \x1e82\x1e83 45-34-2456 Ẃẃ
+uplow \x1e84\x1e85 45-25-2456 Ẅẅ
+uplow \x1e8c\x1e8d 45-25-1346 Ẍẍ
+lowercase \x1e97 45-25-2345 ẗ
+lowercase \x1e98 45-1246-2456 ẘ  http://archives.miloush.net/michkap/archive/2012/04/17/10294366.html
+lowercase \x1e99 45-1246-13456 ẙ
+uplow \x1ebc\x1ebd 45-12456-15 Ẽẽ
+uplow \x1ef8\x1ef9 45-12456-13456 Ỹỹ
+
+uplow \x2c63\x1d7d 4-25-1234 Ᵽᵽ   stroke
+
+uplow \xa740\xa741 4-25-13 Ꝁꝁ   stroke
+uplow \xa742\xa743 4-16-13 Ꝃꝃ   diagonal stroke
+uplow \xa750\xa751 4-25-1234 Ꝑꝑ   stroke descender
+uplow \xa756\xa757 4-25-12345 Ꝗꝗ   stroke descender
+uplow \xa758\xa759 4-16-12345 Ꝙꝙ   diagonal stroke
+uplow \xa75e\xa75f 4-16-1236 Ꝟꝟ   diagonal stroke
+uplow \xa798\xa798 4-25-124 Ꞙꞙ   stroke
+
 
 # Early Forms of English
 uplow \x021c\x021d 3456-13456 Ȝȝ yogh
@@ -379,6 +412,30 @@ lowercase \xfb06 234-45-235-2345 ﬆ
 #   ᾱ   ǟ   ḫ   ⨣   ẘẙ  Ɵ   ẗ   ǰ   Ⱥ   ɟⱦꝃ Ѣѣ  ǘ
 
 
+#   Unicode Ligatured Letters
+
+uppercase \x00c6 1-6-45-235-15 Æ capital ligature ae (ash)
+lowercase \x00e6 1-45-235-15 æ lowercase ligature ae (ash)
+uppercase \x0132 24-6-45-235-245 Ĳ
+lowercase \x0133 24-45-235-245 ĳ
+uppercase \x01e2 45-34-126-1-6-45-235-15-345 Ǽ
+lowercase \x01e3 45-34-126-1-45-235-15-345 ǽ
+uppercase \x0152 135-6-45-235-15 Œ capital ligature oe
+lowercase \x0153 135-45-235-15 œ ligature oe
+
+uppercase \x04d4 1-6-45-235-15 Ӕ cyrillic
+lowercase \x04d5 1-45-235-15 ӕ cyrillic
+
+#\xa7f9 ꟹ
+
+lowercase \xfb00 124-45-235-124 ﬀ
+lowercase \xfb01 124-45-235-24 ﬁ
+#\xfb02 ﬃ
+#\xfb03 ﬄ
+lowercase \xfb05 124-45-235-2345 ﬅ
+lowercase \xfb06 234-45-235-2345 ﬆ
+
+
 #   Unicode Greek
 
 uplow \x0391\x03b1 46-1 Αα Alpha
@@ -410,13 +467,8 @@ uplow \x03a9\x03c9 46-2456 Ωω Omega
 
 #   Unicode Punctuation and Signs
 
-#punctuation \x0092 3
-#punctuation \x0097 36-36
-#punctuation \x0093 236
-#punctuation \x0094 356
-#punctuation \x0096 36
-#punctuation \x0097 36-36
-punctuation \x00a1 45-56-235 ¡
+sign \x00a1 45-56-235 ¡
+punctuation \x00a1 235 ¡
 sign \x00a2 4-14 ¢ cent
 sign \x00a3 4-123 £ pound
 #sign \x00a3 3456 £
@@ -434,21 +486,16 @@ punctuation \x00ad 36 - soft hyphen
 sign \x00ae 45-1235 ® registered
 sign \x00af 4-36 ¯
 #sign \x00ba 0 º
-sign \x00b6 45-1234 ¶ pilcrow 
-sign \x00b8 45-12346 ¸ cedilla 
+sign \x00b6 45-1234 ¶ pilcrow
+sign \x00b8 45-12346 ¸ cedilla
 punctuation \x00bb 456-356 »
 punctuation \x00bf 45-56-236 ¿
-uppercase \x00c6 1-6-45-235-15 Æ capital ligature ae (ash)
-lowercase \x00e6 1-45-235-15 æ lowercase ligature ae (ash)
-uppercase \x0152 135-6-45-235-15 Œ capital ligature oe
-lowercase \x0153 135-45-235-15 œ ligature oe
 
 uplow \x014a\x014b 45-1345 Ŋŋ
 uplow \x018f\x0259 456-26 Əə
 #\x0259 ə  see \x018f
 uplow \x04d8\x04d9 456-26 Әә   cyrillic schwa
 
-sign \x02d8 4-346 ˘ uncombining breve
 sign \x02e6 45-46-14 ˦ high tone
 sign \x02e7 45-46-25 ˧ mid tone
 sign \x02e8 45-46-36 ˨ low tone
@@ -468,7 +515,7 @@ space \x200b 0
 punctuation \x2010 36 ‐
 punctuation \x2011 36 ‑
 punctuation \x2013 6-36 –
-punctuation \x2014 6-36 —
+punctuation \x2014 5-6-36 — Rules of UEB, page 15
 punctuation \x2015 5-6-36 ―
 noback punctuation \x2018 6-236 ‘
 noback punctuation \x2019 6-356 ’
@@ -495,13 +542,13 @@ sign \x2199 56-1256-345 ↙
 sign \x21a6 56-1256-1256 ↦
 sign \x21b2 56-1256-256 ↲
 sign \x21b3 56-1256-356 ↳
-sign \x21b5 56-1256-256 ↵
+sign \x21b5 56-1256-256-146 ↵ Rules of UEB, page 21
 sign \x21c0 56-1256-4-1235 ⇀
 sign \x21c1 56-1256-6-1235 ⇁
 sign \x21cc 45-456-2356 ⇌ equilibrium arrow (harpoons)
 sign \x21d2 56-1256-2356-2356 ⇒
 
-sign \x25aa 456-256 ▪ 
+sign \x25aa 456-256 ▪
 
 sign \x2640 45-1346 ♀
 sign \x2642 45-13456 ♂
@@ -600,11 +647,14 @@ sign \x22a5 3456-36 ⊥ up tack
 sign \x22a6 456-25 ⊦ assertion
 sign \x22a8 45-456-25 ⊨ valid
 sign \x22b2 4-456-126 ⊲ normal subgroup
-sign \x22b3 4-456-345 ⊳ contains as normal subgroup 
+sign \x22b3 4-456-345 ⊳ contains as normal subgroup
 sign \x22b4 456-456-126 ⊴ normal subgroup or equal
 sign \x22b5 456-456-345 ⊵ contains as normal subgroup or equal
 sign \x22be 3456-456-246 ⊾ right angle with arc
 sign \x22c5 5-256 ⋅ dot operator
+
+sign \x2a23 45-146-5-235 ⨣
+sign \x2a24 45-12456-5-235 ⨤
 sign \x2ae4 46-456-25 ⫤ reverse 'is valid' sign
 
 math \x2329 4-126 〈
