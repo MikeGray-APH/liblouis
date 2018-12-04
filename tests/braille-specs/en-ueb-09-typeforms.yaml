@@ -34,7 +34,6 @@ tests:
   - '#bg_24#i'
   - typeform:
       underline: '  + '
-    xfail: true
 
 - - Stop! May I help?
   - ',/op~26 ,may ,i help~28'
@@ -65,7 +64,6 @@ tests:
   - '#e~2#e n #e~2#f'
   - typeform:
       bold: ' +      +'
-    xfail: true
 
   # 9.2.2 page 94
 
@@ -146,7 +144,6 @@ tests:
   - '#ac4h~1#ffff444'
   - typeform:
       bold: '    +++++++'
-    xfail: true
 
 - - Go to http://www.wikipedia.org for general information.
   - ',g to .1http3_/_/www4wikip$ia4org = g5}al 9=ma;n4'

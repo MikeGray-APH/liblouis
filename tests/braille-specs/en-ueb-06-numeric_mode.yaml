@@ -76,7 +76,6 @@ tests:
 - - '4567'
   - '#d_1#ef_''#g'
   - typeform: {underline: " ++ "}
-    xfail: true
 
 # 6.4.1 page 61
 
