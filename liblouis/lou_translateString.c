@@ -2944,10 +2944,13 @@ markEmphases(const TranslationTableHeader *table, const InString *input,
 
 		if(!capsOff)
 		{
-			if (checkAttr(input->chars[i], CTC_UpperCase, 0, table)) {
+			if(caps_start >= 0 && typebuf[i] & (computer_braille | no_translate))
+				goto stop_caps;
+			else if (checkAttr(input->chars[i], CTC_UpperCase, 0, table)) {
 				if (caps_start < 0) caps_start = i;
 				caps_cnt++;
 			} else if (caps_start >= 0) {
+				stop_caps:
 				/* caps should keep going until this */
 				if (checkAttr(input->chars[i], CTC_Letter, 0, table) &&
 						checkAttr(input->chars[i], CTC_LowerCase, 0, table)) {
