@@ -251,6 +251,11 @@ table_files = \
 	mwr.ctb \
 	mwr.tbl \
 	ne.ctb \
+	nemeth-ueb-chardefs.ctb \
+	nemeth-ueb-g1.ctb \
+	nemeth-ueb.ctb \
+	nemeth.ctb \
+	nemeth_edit.ctb \
 	nemethdefs.cti \
 	ne.tbl \
 	nl-BE.dis \
